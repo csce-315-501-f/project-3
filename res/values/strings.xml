@@ -2,6 +2,31 @@
 <resources>
 
     <string name="app_name">REverSI</string>
+    <string name="txtGameSettings">Game Settings</string>
+    <string name="txtGameMode">Game Mode:</string>
+
+    <string-array name="txtGameModes">
+        <item>vs AI</item>
+        <item>vs Human</item>
+    </string-array>
+
+    <string name="txtDifficulty">Game Difficulty:</string>
+
+    <string-array name="txtDifficulties">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+    <string name="txtCategory">Category:</string>
+
+    <string-array name="txtCategories">
+        <item>All Categories</item>
+        <item>General</item>
+    </string-array>
+
+    <string name="txtSubmit">Submit</string>
+    <string name="title_activity_game_board">REverSI</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 

@@ -1,16 +1,103 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity" >
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+	
+	    <TextView
+	        android:id="@+id/txtGameSettings"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="16dp"
+	        android:textSize="@dimen/dimTitle"
+	        android:text="@string/txtGameSettings" />
+	    
+ 	</RelativeLayout>
+ 	
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="horizontal" >
+        
+	    <TextView
+	        android:id="@+id/txtGameMode"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/dimText"
+	        android:text="@string/txtGameMode" />
+	    
+	    <Spinner
+	        android:id="@+id/spinGameModes"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/dimText"
+	        android:entries="@array/txtGameModes" />
+	    
+    </LinearLayout>
+    
+ 	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    
+	    <TextView
+	        android:id="@+id/txtGameDifficulty"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/dimText"
+	        android:text="@string/txtDifficulty" />
+	
+	    <Spinner
+	        android:id="@+id/spinDifficulties"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/dimText"
+	        android:entries="@array/txtDifficulties" />
+	    
+	</LinearLayout>
 
-</RelativeLayout>
+ 	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    
+	    <TextView
+	        android:id="@+id/txtCategories"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/dimText"
+	        android:text="@string/txtCategory" />
+	
+	    <Spinner
+	        android:id="@+id/spinCategory"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:textSize="@dimen/dimText"
+	        android:entries="@array/txtCategories" />
+	    
+	</LinearLayout>
+
+ 	<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+	    <Button
+	        android:id="@+id/butStart"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="23dp"
+	        android:textSize="@dimen/dimText"
+	        android:text="@string/txtSubmit"
+	        android:onClick="startGame" />
+	</RelativeLayout>
+
+</LinearLayout>
