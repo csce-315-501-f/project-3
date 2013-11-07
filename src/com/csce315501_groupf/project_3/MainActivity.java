@@ -16,11 +16,11 @@ import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 
-	final String GAME_MODE = "com.csce315501_groupf.project3.GAME_MODE";
-	final String GAME_DIFFICULTY = "com.csce315501_groupf.project3.GAME_DIFFICULTY";
-	final String QUESTION_CATEGORY = "com.csce315501_groupf.project3.QUESTION_CATEGORY";
-	final String PREF_FILE = "REVERSI_PREFS";
-	final String TAG = "com.reversi";
+	static final String GAME_MODE = "com.csce315501_groupf.project3.GAME_MODE";
+	static final String GAME_DIFFICULTY = "com.csce315501_groupf.project3.GAME_DIFFICULTY";
+	static final String QUESTION_CATEGORY = "com.csce315501_groupf.project3.QUESTION_CATEGORY";
+	static final String PREF_FILE = "REVERSI_PREFS";
+	static final String TAG = "com.reversi";
 	
 	private Spinner spinGameMode;
 	private Spinner spinGameDifficulty;
