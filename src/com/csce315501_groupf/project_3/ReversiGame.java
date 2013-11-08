@@ -18,9 +18,9 @@ public class ReversiGame {
 	private static final int ALPHA = Integer.MIN_VALUE;
 	private static final int BETA = Integer.MAX_VALUE;
 	
-	private static final String BLACK = "@";
-	private static final String WHITE = "O";
-	private static final String EMPTY = "_";
+	public static final String BLACK = "@";
+	public static final String WHITE = "O";
+	public static final String EMPTY = "_";
 	
 //	// Board weights for min-max algorithm
 //	// based off of http://mnemstudio.org/ai/game/images/reversi_zones1.gif
@@ -30,7 +30,7 @@ public class ReversiGame {
 	private static final int R4 = -10; // corner border
 	private static final int R5 = 50;  // corner
 	
-	private class Move {
+	class Move {
 		int row;
 		int column;
 		
@@ -48,7 +48,7 @@ public class ReversiGame {
 		}
 	}
 	
-	private class WeightedMove {
+	class WeightedMove {
 		int weight;
 		Move move;
 		
@@ -195,12 +195,13 @@ public class ReversiGame {
 	void saveBoardState() {
 		// board state is saved after every DARK turn, so that
 	    // the board can be reset to the last time the player was able to play
-	    boardUndoStates.push(board);
+	    boardUndoStates.addFirst(board);
 	}
 	
 	boolean lightTurn(int column, int row) {
-	    saveBoardState();
-	    boardRedoStates.clear();
+		// removing undo/redo functionality for now since it's crashing the device
+		//	    saveBoardState();
+//	    boardRedoStates.clear();
 	    if (board[column][row-1] == BLACK || board[column][row-1] == WHITE) 
 	        return false;
 	    board[column][row-1] = WHITE;
@@ -412,14 +413,14 @@ public class ReversiGame {
 
 	    Move move = new Move();
 	    switch (difficulty) {
-	    case 'e':
-	        move = findBestMove(true, 1, ALPHA, BETA).move;
-	        break;
-	    case 'm':
-	        move = findBestMove(true, 3, ALPHA, BETA).move;
-	        break;
-	    case 'h':
-	        move = findBestMove(true, 5, ALPHA, BETA).move;
+		    case 'e':
+		        move = findBestMove(true, 1, ALPHA, BETA).move;
+		        break;
+		    case 'm':
+		        move = findBestMove(true, 3, ALPHA, BETA).move;
+		        break;
+		    case 'h':
+		        move = findBestMove(true, 5, ALPHA, BETA).move;
 	    }
 	    
 	    if (!move.isValid()) return move;
@@ -439,7 +440,13 @@ public class ReversiGame {
 	    if (depth == 0) return new WeightedMove(getBoardWeight(weightPlayer),new Move());
 
 	    ArrayList<Move> moves = getMoves(turn);
-	    String[][] backupBoard = board;
+	    String[][] backupBoard = new String[COLUMNS][ROWS];
+	    for (int i = 0; i < COLUMNS; ++i) {
+	    	for (int j = 0; j < ROWS; ++j) {
+	    		backupBoard[i][j] = board[i][j];
+	    	}
+	    }
+//	    System.arraycopy(board, 0, backupBoard, 0, board.length);
 
 	    if (maximizingPlayer) { // BLACK's turn
 	        WeightedMove bestAlpha = new WeightedMove();
@@ -452,7 +459,12 @@ public class ReversiGame {
 	                tempAlpha.move = moves.get(i);
 	                bestAlpha = tempAlpha;
 	            }
-	            board = backupBoard;
+//	            board = backupBoard;
+	    	    for (int k = 0; k < COLUMNS; ++k) {
+	    	    	for (int j = 0; j < ROWS; ++j) {
+	    	    		board[k][j] = backupBoard[k][j];
+	    	    	}
+	    	    }
 	            if (beta <= alpha) {
 	                break; // beta cut-off
 	            }
@@ -471,7 +483,12 @@ public class ReversiGame {
 	                tempBeta.move = moves.get(j);
 	                bestBeta = tempBeta;
 	            }
-	            board = backupBoard;
+//	            board = backupBoard;
+	            for (int i = 0; i < COLUMNS; ++i) {
+	    	    	for (int k = 0; k < ROWS; ++k) {
+	    	    		board[i][k] = backupBoard[i][k];
+	    	    	}
+	    	    }
 	            if (beta <= alpha) {
 	                break;
 	            }
@@ -506,12 +523,6 @@ public class ReversiGame {
 	        }
 	    }
 	    
-	    
-	    // set available moves
-	    ArrayList<Move> moves = getMoves(WHITE);
-	    for(int i = 0; i < moves.size(); ++i) 
-	        boardString[moves.get(i).column][moves.get(i).row-1] = 'M';
-	    
 	    // place pieces
 		for (int i = 0; i <= ROWS; i++) {
 	        for (int j = 0; j <= COLUMNS; j++) {
@@ -521,6 +532,12 @@ public class ReversiGame {
 	                boardString[i][j]= 'B';
 	        }
 		}
+	    
+	    // set available moves
+	    ArrayList<Move> moves = getMoves(WHITE);
+	    for(int i = 0; i < moves.size(); ++i) 
+	        boardString[moves.get(i).column][moves.get(i).row-1] = 'M';
+	    
 
 	    for(int i = 0; i <= ROWS; i++) {
 	        for(int j = 0; j <= COLUMNS; j++) {

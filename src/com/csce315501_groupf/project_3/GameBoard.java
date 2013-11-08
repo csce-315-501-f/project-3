@@ -14,9 +14,16 @@ public class GameBoard extends Activity {
 	private static final int COLUMNS = 8;
 	ImageButton[][] board;;
 
+	private static final char BLACK = 'B';
+	private static final char WHITE = 'W';
+	private static final char EMPTY = '.';
+	private static final char MOVE = 'M';
+	
 	private String difficulty;
 	private String category;
 	private String mode;
+	
+	ReversiGame game;
 	
 	TextView temp;
 	
@@ -35,22 +42,62 @@ public class GameBoard extends Activity {
 		
 		Log.d(MainActivity.TAG, "buttons setup");
 		
+		game = new ReversiGame('e'); // testing with game just set to be easy
 		
 		if (savedInstanceState == null) {
 			//((ImageButton)findViewById(R.id.but00)).setImageResource(R.drawable.reversi_black);
-			board[3][4].setImageResource(R.drawable.reversi_black);
-			board[4][3].setImageResource(R.drawable.reversi_black);
-			board[3][3].setImageResource(R.drawable.reversi_white);
-			board[4][4].setImageResource(R.drawable.reversi_white);
+//			board[3][4].setImageResource(R.drawable.reversi_black);
+//			board[4][3].setImageResource(R.drawable.reversi_black);
+//			board[3][3].setImageResource(R.drawable.reversi_white);
+//			board[4][4].setImageResource(R.drawable.reversi_white);
+			updateButtons();
 		}
 		else {
 			
 		}
 	}
 
-	private void doMove(int x, int y) {
-		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",x,y));
-		temp.setText(String.format("doing move (%d,%d)",x,y));
+	private void doMove(int r, int c) {
+		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
+//		temp.setText(String.format("doing move (%d,%d)",r,c));
+		if(game.lightTurn(c, r+1)) {
+//			temp.setText(String.format("did move (col=%d,row=%d) with result %s",c+1,r+1, success?"G":"B"));
+			switch (game.hasWon(ReversiGame.WHITE)) {
+	            case 'w':
+	            	temp.setText("W");
+	                return;
+	            case 't':
+	            	temp.setText("T");
+	                return;
+	            case 'l':
+	            	temp.setText("L");
+	                return;
+            }
+            ReversiGame.Move m = game.blackTurn();
+		
+            //skip dark turn if no moves
+            if (!m.isValid()) {
+//            	temp.setText("black has no moves ("+m.column+", "+m.row+")");
+            }
+            else {
+				while (!game.canMove(ReversiGame.WHITE)) {
+		            m = game.blackTurn();
+		            temp.setText(m.column + " " + m.row);
+		            switch (game.hasWon(ReversiGame.BLACK)) {
+		                case 'w':
+		                	temp.setText("L");
+		                    return;
+		                case 't':
+		                	temp.setText("T");
+		                    return;
+		                case 'l':
+		                	temp.setText("W");
+		                    return;
+		            }
+		        }
+            }
+		}
+		updateButtons();
 	}
 	
 	@Override
@@ -142,6 +189,35 @@ public class GameBoard extends Activity {
 		board[7][6] = (ImageButton)findViewById(R.id.but76);
 		board[7][7] = (ImageButton)findViewById(R.id.but77);
 		
+		for (int i = 0; i < COLUMNS; ++i) {
+			for (int j = 0; j < ROWS; ++j) {
+				board[i][j].setImageResource(R.drawable.reversi_empty);
+			}
+		}
+		
+	}
+	
+	private void updateButtons() {
+		String display = game.display();
+		String[] gb = display.split("\n"); 
+        for(int k = 0; k < 8; ++k) {
+            for(int n = 0; n < 8; ++n) {
+                switch (gb[k].charAt(n)) {
+					case WHITE: 
+						board[n][k].setImageResource(R.drawable.reversi_white);
+						break;
+					case BLACK:
+						board[n][k].setImageResource(R.drawable.reversi_black);
+						break;
+					case MOVE:
+						board[n][k].setImageResource(R.drawable.reversi_move);
+						break;
+					case EMPTY:
+						board[n][k].setImageResource(R.drawable.reversi_empty);
+						break;
+                }
+            }
+        }
 	}
 	
 	public void but00(View v) {
