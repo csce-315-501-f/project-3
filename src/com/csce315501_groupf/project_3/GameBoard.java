@@ -1,6 +1,7 @@
 package com.csce315501_groupf.project_3;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -59,6 +60,8 @@ public class GameBoard extends Activity {
 
 	private void doMove(int r, int c) {
 		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
+		Intent intent = new Intent(this,Questions.class);
+		startActivity(intent);
 //		temp.setText(String.format("doing move (%d,%d)",r,c));
 		if(game.lightTurn(c, r+1)) {
 //			temp.setText(String.format("did move (col=%d,row=%d) with result %s",c+1,r+1, success?"G":"B"));
