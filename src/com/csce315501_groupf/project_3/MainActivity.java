@@ -1,5 +1,9 @@
 package com.csce315501_groupf.project_3;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +23,7 @@ public class MainActivity extends Activity {
 	static final String GAME_MODE = "com.csce315501_groupf.project3.GAME_MODE";
 	static final String GAME_DIFFICULTY = "com.csce315501_groupf.project3.GAME_DIFFICULTY";
 	static final String QUESTION_CATEGORY = "com.csce315501_groupf.project3.QUESTION_CATEGORY";
+	static final String SD_CARD = "com.csce315501_groupf.project3.SD_CARD";
 	static final String PREF_FILE = "REVERSI_PREFS";
 	static final String TAG = "com.reversi";
 	
@@ -33,12 +38,35 @@ public class MainActivity extends Activity {
 	private String questionCategory;
 	private List<String> questionCategories;
 	
+	private int hasSDCard;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
         Log.d(TAG,"onCreate");
+        
+        Log.d(TAG, "onCreate: setting up xml database on external media");
+        File file = new File(getExternalFilesDir(null), "astronomy.xml");
+        if (!file.exists())
+	        try {
+	        	InputStream is = getResources().openRawResource(R.raw.astronomy);
+	        	OutputStream os = new FileOutputStream(file);
+	        	byte[] data = new byte[is.available()];
+	        	is.read(data);
+	        	os.write(data);
+	        	is.close();
+	        	os.close();
+	        	hasSDCard = 1;
+	        }
+	        catch(Exception e) {
+	        	hasSDCard = 0;
+	        	Log.d(TAG, "Error writing to external storage, or no external storage available");
+	        }
+        else {
+        	hasSDCard = 1;
+        }
         
         // load XML data
         gameModes = (List<String>) Arrays.asList(getResources().getStringArray(R.array.txtGameModes));
@@ -162,6 +190,7 @@ public class MainActivity extends Activity {
     	intent.putExtra(GAME_MODE, gameMode);
     	intent.putExtra(GAME_DIFFICULTY, gameDifficulty);
     	intent.putExtra(QUESTION_CATEGORY, questionCategory);
+    	intent.putExtra(SD_CARD, hasSDCard);
     	startActivity(intent);
     }
     

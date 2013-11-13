@@ -1,5 +1,6 @@
 package com.csce315501_groupf.project_3;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,11 +27,14 @@ public class GameBoard extends Activity {
 	private String category;
 	private String mode;
 	
+	private boolean hasSDCard;
+	
 	ReversiGame game;
 	
 	TextView temp;
 	
 	
+	@SuppressLint("DefaultLocale")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +48,7 @@ public class GameBoard extends Activity {
 		difficulty = intent.getStringExtra(MainActivity.GAME_DIFFICULTY);
 		category = intent.getStringExtra(MainActivity.QUESTION_CATEGORY);
 		mode = intent.getStringExtra(MainActivity.GAME_MODE);
+		hasSDCard = (intent.getIntExtra(MainActivity.SD_CARD, 0) > 0)?true:false;
 		
 		setupButtons();
 		temp = (TextView) findViewById(R.id.temp);
@@ -51,19 +56,9 @@ public class GameBoard extends Activity {
 		
 		Log.d(MainActivity.TAG, "buttons setup");
 		
-		game = new ReversiGame('e'); // testing with game just set to be easy
+		game = new ReversiGame(difficulty.toLowerCase().charAt(0));
 		
-		if (savedInstanceState == null) {
-			//((ImageButton)findViewById(R.id.but00)).setImageResource(R.drawable.reversi_black);
-//			board[3][4].setImageResource(R.drawable.reversi_black);
-//			board[4][3].setImageResource(R.drawable.reversi_black);
-//			board[3][3].setImageResource(R.drawable.reversi_white);
-//			board[4][4].setImageResource(R.drawable.reversi_white);
-			updateButtons();
-		}
-		else {
-			
-		}
+		updateButtons();
 	}
 
 

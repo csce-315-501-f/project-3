@@ -4,6 +4,8 @@
     <string name="app_name">REverSI</string>
     <string name="txtGameSettings">Game Settings</string>
     <string name="txtGameMode">Game Mode:</string>
+    
+    <string name="gameStartWelcome">Welcome! :)</string>
 
     <string-array name="txtGameModes">
         <item>vs AI</item>

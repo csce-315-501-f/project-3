@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<questions category="astronomy">
+    <question>
+        <q>Which constellation is called “the princess”?</q>
+        <a correct="true">Andromeda</a>
+        <a>Perseus</a>
+        <a>Cygnus</a>
+        <a>Crater</a>
+    </question>
+    
+    
+    <question>
+        <q>How many moons does Venus have?</q>
+        <a>2</a>
+        <a>3</a>
+        <a>1</a>
+        <a correct="true">0</a>
+    </question>
+    
+    
+    <question>
+        <q>What is Saturn’s largest moon?</q>
+        <a>Tarvos</a>
+        <a>Helene</a>
+        <a correct="true">Titan</a>
+        <a>Atlas</a>
+    </question>
+    
+    
+    <question>
+        <q>What is Pluto’s period of revolution?</q>
+        <a>247 Earth Years</a>
+        <a correct="true">248 Earth Years </a>
+        <a>249 Earth Years </a>
+        <a>250 Earth Years </a>
+    </question>
+    
+    
+    <question>
+        <q>Which of the following is an obsolete constellation?</q>
+        <a correct="true">Felis</a>
+        <a>Hydrus</a>
+        <a>Lynx</a>
+        <a>Dorado</a>
+    </question>
+    
+    
+    <question>
+        <q>What is the Moon’s orbital period around the Earth?</q>
+        <a correct="true">27 Earth Days</a>
+        <a>28 Earth Days </a>
+        <a>30 Earth Days </a>
+        <a>31 Earth Days </a>
+    </question>
+    
+    
+    <question>
+        <q>Which planet has the hottest surface?</q>
+        <a>Mercury</a>
+        <a correct="true">Venus</a>
+        <a>Earth</a>
+        <a>Mars</a>
+    </question>
+    
+    
+    <question>
+        <q>Assuming one could travel at the speed of light, how long would it take to travel across the Milky Way?</q>
+        <a>1,000 years</a>
+        <a>1,000,000 years</a>
+        <a correct="true">100,000 years</a>
+        <a>10,000 years</a>
+    </question>
+    
+    
+    <question>
+        <q>A small planetary body in orbit around the Sun, larger than a meteoroid but smaller than a planet.</q>
+        <a correct="true"> Asteroid</a>
+        <a>Nadir</a>
+        <a>Comet</a>
+        <a>Oort Cloud</a>
+    </question>
+    
+    
+    <question>
+        <q>A system of two stars that revolve around a common center of gravity?</q>
+        <a>Tektite</a>
+        <a correct="true">Binary</a>
+        <a>Apogee</a>
+        <a>Neutrino</a>
+    </question>
+    
+    
+    <question>
+        <q>A gigantic ball of ice and tock that orbit the Sun in a highly eccentric orbit.</q>
+        <a>Meteor</a>
+        <a>Umbra</a>
+        <a>Protostar</a>
+        <a correct="true">Comet</a>
+    </question>
+    
+    
+    <question>
+        <q>A grouping of stars that make an imaginary picture in the sky.</q>
+        <a>Galaxy</a>
+        <a correct="true">Constellation</a>
+        <a>Tektite</a>
+        <a>Aurora</a>
+    </question>
+    
+    
+    <question>
+        <q>How many types of planets are there?</q>
+        <a>1</a>
+        <a>2</a>
+        <a correct="true">3</a>
+        <a>0</a>
+    </question>
+    
+    
+    <question>
+        <q>What happen to stars as they grow old?</q>
+        <a correct="true">Expand</a>
+        <a>Shrink</a>
+        <a></a>
+        <a></a>
+    </question>
+    
+    
+    <question>
+        <q>A pathway of an object around another object is called a/an?</q>
+        <a correct="true">Orbit</a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </question>
+    
+    
+    <question>
+        <q>Imaginary vertical line around which an object rotates?</q>
+        <a>Azimuth</a>
+        <a correct="true">Axis</a>
+        <a>Equinox</a>
+        <a>Janski</a>
+    </question>
+    
+    
+    <question>
+        <q>Any object that revolves around another in space</q>
+        <a>Janski</a>
+        <a>Comet</a>
+        <a correct="true">Satellite</a>
+        <a>Hypergalaxy</a>
+    </question>
+    
+    
+    <question>
+        <q>Occurs when a new moon blocks the sun</q>
+        <a>New Moon</a>
+        <a>Lunar Eclipse</a>
+        <a correct="true">Solar Eclipse</a>
+        <a>Full Moon</a>
+    </question>
+    
+    
+    <question>
+        <q>Occurs when Earth’s shadow falls on the Moon?</q>
+        <a correct="true">Lunar Eclipse</a>
+        <a>Full Moon</a>
+        <a>New Moon</a>
+        <a>Solar Eclipse</a>
+    </question>
+    
+    
+    <question>
+        <q>A large group of stars…</q>
+        <a>Academy Awards</a>
+        <a>Jansky</a>
+        <a correct="true">Galaxy</a>
+        <a>Kelvin</a>
+    </question>
+    
+    
+    <question>
+        <q>A unit of astronomical distance equivalent to the distance that light travels in one year?</q>
+        <a>Light 12 months</a>
+        <a correct="true">Light year</a>
+        <a>Beam year</a>
+        <a>Long year</a>
+    </question>
+    
+    
+    <question>
+        <q>When the moon is less lit up, it is called…</q>
+        <a>Filling</a>
+        <a>Fading</a>
+        <a correct="true">Waning</a>
+        <a>Waxing</a>
+    </question>
+    
+    
+    <question>
+        <q>When the Moon is more lit up, it is called…</q>
+        <a>Waning</a>
+        <a correct="true">Waxing</a>
+        <a>Filling</a>
+        <a>Fading</a>
+    </question>
+    
+    
+    <question>
+        <q>What type of galaxy is ours?</q>
+        <a>Elliptical</a>
+        <a>Irregular</a>
+        <a>Regular</a>
+        <a correct="true">Spiral</a>
+    </question>
+    
+    <question>
+        <q>What is another name for the North Star?</q>
+        <a>Sirius</a>
+        <a correct="true">Polaris</a>
+        <a>Rigel</a>
+        <a>Vega</a>
+    </question>
+    
+    
+    <question>
+        <q>Stars are born in Nebulas.</q>
+        <a correct="true">True</a>
+        <a>False</a>
+    </question>
+    
+    
+    <question>
+        <q>How many stages does the stars life cycle have?</q>
+        <a>6</a>
+        <a correct="true">9</a>
+        <a>7</a>
+        <a>8</a>
+    </question>
+    
+    
+    <question>
+        <q>What takes place in the center of the sun?</q>
+        <a>Helium is formed</a>
+        <a>Nuclear Fusion</a>
+        <a>Hydrogen fuses together</a>
+        <a correct="true">All of the above</a>
+    </question>
+    
+    
+    <question>
+        <q>The sun gives off all parts of the electromagnetic spectrum.</q>
+        <a correct="true">True</a>
+        <a>False</a>
+    </question>
+    
+    
+    <question>
+        <q>Which planet is the largest?</q>
+        <a>Saturn</a>
+        <a correct="true">Jupiter</a>
+        <a>Uranus</a>
+        <a>Mercury</a>
+    </question>
+    
+    
+    <question>
+        <q>What causes the seasons?</q>
+        <a>The Earth’s orbit</a>
+        <a correct="true">Both the tilt of the Earth’s axis and the Earth’s orbit</a>
+        <a>How close Earth is to the Sun</a>
+        <a>The tilt of the Earth’s axis</a>
+    </question>
+    
+    
+    <question>
+        <q>What causes tides?</q>
+        <a>A tsunami</a>
+        <a>An earthquake</a>
+        <a>The Earth’s gravity</a>
+        <a correct="true">The Moon’s gravity</a>
+    </question>
+    
+    
+    <question>
+        <q>What is a blue moon?</q>
+        <a correct="true">The second full moon of a month</a>
+        <a>When the man on the moon is sad</a>
+        <a>The first full moon of a month</a>
+        <a>When the moon appears blue in color</a>
+    </question>
+    
+    
+    <question>
+        <q>What is the hottest star?</q>
+        <a correct="true">Blue</a>
+        <a>Red</a>
+        <a>Yellow</a>
+        <a>Super Giant</a>
+    </question>
+    
+    
+    <question>
+        <q>How far away is the Sun from the Earth?</q>
+        <a>93 thousand miles</a>
+        <a correct="true">93 million miles</a>
+        <a>93 billion miles</a>
+        <a>1 light year</a>
+    </question>
+    
+    
+    <question>
+        <q>Which planet is smallest?</q>
+        <a>Earth</a>
+        <a>Mars</a>
+        <a>Moon</a>
+        <a correct="true">Mercury</a>
+    </question>
+    
+    
+    <question>
+        <q>Between which two planets is the asteroids belt located?</q>
+        <a>Earth and Mars</a>
+        <a>Uranus and Neptune</a>
+        <a correct="true">Mars and Jupiter</a>
+        <a>Saturn and Uranus</a>
+    </question>
+    
+    
+    <question>
+        <q>Which planet is closest to Earth?</q>
+        <a>Mercury</a>
+        <a>Moon</a>
+        <a correct="true">Venus</a>
+        <a>Mars</a>
+    </question>
+    
+    
+    <question>
+        <q>What causes the comet’s tail?</q>
+        <a>The gravity of the sun</a>
+        <a>Astronomers are not sure</a>
+        <a>The asteroids</a>
+        <a>Solar wind</a>
+    </question>
+    
+    
+    <question>
+        <q>What is the 1st day of Fall called?</q>
+        <a correct="true">Autumnal Equinox</a>
+        <a>Autumnal Solstice</a>
+        <a>Vernal Equinox</a>
+        <a>Vernal Solstice</a>
+    </question>
+    
+    
+    <question>
+        <q>What was the name of the first satellite in space?</q>
+        <a correct="true">Sputnik</a>
+        <a>Explorer 1</a>
+        <a>Cosmo 1</a>
+        <a>Apollo 1</a>
+    </question>
+    
+    
+    <question>
+        <q>During what moon phase does a solar eclipse take place?</q>
+        <a>Full</a>
+        <a>First Quarter</a>
+        <a correct="true">New</a>
+        <a>Last Quarter</a>
+    </question>
+    
+    
+    <question>
+        <q>During what phase of the moon does a lunar eclipse take place?</q>
+        <a>First Quarter</a>
+        <a correct="true">Full</a>
+        <a>New</a>
+        <a>Last Quarter</a>
+    </question>
+    
+    
+    <question>
+        <q>Which of the following is not a constellation of the zodiac?</q>
+        <a correct="true">Orion</a>
+        <a>Leo</a>
+        <a>Libra</a>
+        <a>Cancer</a>
+    </question>
+    
+    
+    <question>
+        <q>About how far away is the nearest star besides the Sun?</q>
+        <a>40 light years</a>
+        <a correct="true">4 light years</a>
+        <a>40,000,000 miles</a>
+        <a>400 light years</a>
+    </question>
+</questions>
