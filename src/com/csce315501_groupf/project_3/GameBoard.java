@@ -74,10 +74,11 @@ public class GameBoard extends Activity {
 	                return;
             }
             ReversiGame.Move m = game.blackTurn();
-		
+            temp.setText("black ("+m.column+", "+m.row+")");
+            
             //skip dark turn if no moves
             if (!m.isValid()) {
-//            	temp.setText("black has no moves ("+m.column+", "+m.row+")");
+            	temp.setText("black has no moves ("+m.column+", "+m.row+")");
             }
             else {
 				while (!game.canMove(ReversiGame.WHITE)) {
@@ -97,6 +98,18 @@ public class GameBoard extends Activity {
 		        }
             }
 		}
+		updateButtons();
+	}
+	
+	public void gameUndo(View v) {
+		boolean success = game.undo();
+		Log.d(MainActivity.TAG, success?"Undo Success":"Undo fail");
+		updateButtons();
+	}
+	
+	public void gameRedo(View v) {
+		boolean success = game.redo();
+		Log.d(MainActivity.TAG, success?"Redo Success":"Redo fail");
 		updateButtons();
 	}
 	

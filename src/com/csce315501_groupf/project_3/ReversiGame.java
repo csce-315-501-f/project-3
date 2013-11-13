@@ -2,6 +2,8 @@ package com.csce315501_groupf.project_3;
 
 import java.util.*;
 
+import android.util.Log;
+
 public class ReversiGame {
 	private static final int A = 0;
 	private static final int B = 1;
@@ -35,7 +37,7 @@ public class ReversiGame {
 		int column;
 		
 		Move() {
-			this(0,0);
+			this(-1,-1);
 		}
 		
 		Move(int c, int r) {
@@ -44,7 +46,7 @@ public class ReversiGame {
 		}
 		
 		boolean isValid() {
-			return row > 0 && column > 0;
+			return row >= 0 && column >= 0;
 		}
 	}
 	
@@ -63,8 +65,8 @@ public class ReversiGame {
 	}
 
 	String[][] board;
-	ArrayDeque<String[][]> boardUndoStates;
-	ArrayDeque<String[][]> boardRedoStates;
+	Stack<String[][]> boardUndoStates;
+	Stack<String[][]> boardRedoStates;
 	int[][] boardWeights;
 	
 	char difficulty;
@@ -77,6 +79,8 @@ public class ReversiGame {
 	public ReversiGame(char diff) {
 		initBoard();
 		initBoardWeights();
+		boardUndoStates = new Stack<String[][]>();
+		boardRedoStates = new Stack<String[][]>();
 		difficulty = diff;
 	}
 	
@@ -195,13 +199,19 @@ public class ReversiGame {
 	void saveBoardState() {
 		// board state is saved after every DARK turn, so that
 	    // the board can be reset to the last time the player was able to play
-	    boardUndoStates.addFirst(board);
+		String[][] backupBoard = new String[COLUMNS][ROWS];
+	    for (int i = 0; i < COLUMNS; ++i) {
+	    	for (int j = 0; j < ROWS; ++j) {
+	    		backupBoard[i][j] = board[i][j];
+	    	}
+	    }
+		boardUndoStates.push(backupBoard);
 	}
 	
 	boolean lightTurn(int column, int row) {
 		// removing undo/redo functionality for now since it's crashing the device
-		//	    saveBoardState();
-//	    boardRedoStates.clear();
+		saveBoardState();
+	    boardRedoStates.clear();
 	    if (board[column][row-1] == BLACK || board[column][row-1] == WHITE) 
 	        return false;
 	    board[column][row-1] = WHITE;
@@ -249,72 +259,6 @@ public class ReversiGame {
 		else {
 			return false;
 		}
-		
-		/*if (piece == WHITE) {
-//		    String piece = board[x][y-1];
-		    x += xdir;
-		    y = y + ydir - 1;
-//		    vector< pair<int,int> > toFlip;
-		    ArrayList<Move> toFlip = new ArrayList<Move>();
-		    boolean isFlip = false;
-		    while (0 <= x && x <= ROWS && 0 <= y && y <= COLUMNS) {
-		        if (board[x][y] == BLACK) {
-		            toFlip.add(new Move(x,y));
-		        }
-		        else if (!toFlip.isEmpty() && board[x][y] == WHITE) {
-		            isFlip = true;
-		            break;
-		        }
-		        else if (board[x][y] == EMPTY) {
-		            break;
-		        }
-	            else if (board[x][y] == WHITE && toFlip.isEmpty()) {
-		            break;
-	            }
-		        x += xdir;
-		        y += ydir;
-		    }
-		    if (isFlip && flip == 1) {
-		        for (int i = 0; i < toFlip.size(); ++i) {
-		            board[toFlip.get(i).column][toFlip.get(i).row] = WHITE;
-		        }
-		    }
-		    return isFlip;
-		}
-		else if (piece == BLACK)
-		{
-//		    String piece = board[x][y-1];
-		    x += xdir;
-		    y = y + ydir - 1;
-		    ArrayList<Move> toFlip = new ArrayList<Move>();
-		    boolean isFlip = false;
-		    while (0 <= x && x <= ROWS && 0 <= y && y <= COLUMNS) {
-		        if (board[x][y] == WHITE) {
-		        	toFlip.add(new Move(x,y));
-		        }
-		        else if (!toFlip.isEmpty() && board[x][y] == BLACK) {
-		            isFlip = true;
-		            break;
-		        }
-	            else if (board[x][y] == EMPTY) {
-		            break;
-	            }
-	            else if (board[x][y] == BLACK && toFlip.isEmpty()) {
-		            break;
-	            }
-		        x += xdir;
-		        y += ydir;
-		    }
-		    if (isFlip && flip == 1) {
-		        for (int i = 0; i < toFlip.size(); ++i) {
-		            board[toFlip.get(i).column][toFlip.get(i).row] = BLACK ;
-		        }
-		    }
-		    return isFlip;
-		}
-
-		else 
-			return false;*/
 	}
 	
 	boolean doFlipWrapper(int x, int y, int flip) {
@@ -332,14 +276,26 @@ public class ReversiGame {
 
     boolean undo() {
     	if (boardUndoStates.isEmpty()) return false;
-    	boardRedoStates.add(board);
+    	String[][] backupBoard = new String[COLUMNS][ROWS];
+	    for (int i = 0; i < COLUMNS; ++i) {
+	    	for (int j = 0; j < ROWS; ++j) {
+	    		backupBoard[i][j] = board[i][j];
+	    	}
+	    }
+    	boardRedoStates.push(backupBoard);
     	board = boardUndoStates.pop();
     	return true;
     }
     
 	boolean redo() {
 		if (boardRedoStates.isEmpty()) return false;
-		boardUndoStates.add(board);
+		String[][] backupBoard = new String[COLUMNS][ROWS];
+	    for (int i = 0; i < COLUMNS; ++i) {
+	    	for (int j = 0; j < ROWS; ++j) {
+	    		backupBoard[i][j] = board[i][j];
+	    	}
+	    }
+		boardUndoStates.push(backupBoard);
 		board = boardRedoStates.pop();
 		return true;
 	}
