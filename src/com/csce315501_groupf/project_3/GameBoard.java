@@ -1,10 +1,13 @@
 package com.csce315501_groupf.project_3;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,6 +39,12 @@ public class GameBoard extends Activity {
 		
 		setContentView(R.layout.game_board);
 	
+		
+		Intent intent = getIntent();
+		difficulty = intent.getStringExtra(MainActivity.GAME_DIFFICULTY);
+		category = intent.getStringExtra(MainActivity.QUESTION_CATEGORY);
+		mode = intent.getStringExtra(MainActivity.GAME_MODE);
+		
 		setupButtons();
 		temp = (TextView) findViewById(R.id.temp);
 		
@@ -57,8 +66,16 @@ public class GameBoard extends Activity {
 		}
 	}
 
+
+	public void submitQuestion(View v) {
+		setContentView(R.layout.game_board);
+		setupButtons();
+		updateButtons();
+	}
+	
 	private void doMove(int r, int c) {
 		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
+		setContentView(R.layout.activity_questions);
 //		temp.setText(String.format("doing move (%d,%d)",r,c));
 		if(game.lightTurn(c, r+1)) {
 //			temp.setText(String.format("did move (col=%d,row=%d) with result %s",c+1,r+1, success?"G":"B"));
@@ -236,6 +253,7 @@ public class GameBoard extends Activity {
 	public void but00(View v) {
 		doMove(0,0);
 	}
+	
 	public void but01(View v) {
 		doMove(0,1);
 	}
@@ -432,4 +450,5 @@ public class GameBoard extends Activity {
 	public void but77(View v) {
 		doMove(7,7);
 	}
+
 }
