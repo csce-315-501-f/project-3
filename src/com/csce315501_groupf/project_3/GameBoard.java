@@ -1,5 +1,7 @@
 package com.csce315501_groupf.project_3;
 
+import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,6 +31,10 @@ public class GameBoard extends Activity {
 	private String category;
 	private String mode;
 	
+	private int blackScore;
+	private int whiteScore;
+	private ArrayList<ReversiGame.Move> availableMoves;
+	
 	private boolean hasSDCard;
 	
 	ReversiGame game;
@@ -45,6 +51,9 @@ public class GameBoard extends Activity {
 		
 		setContentView(R.layout.game_board);
 	
+		blackScore = 0;
+		whiteScore = 0;
+		availableMoves = new ArrayList<ReversiGame.Move>();
 		
 		Intent intent = getIntent();
 		difficulty = intent.getStringExtra(MainActivity.GAME_DIFFICULTY);
@@ -71,54 +80,59 @@ public class GameBoard extends Activity {
 	}
 	
 	private void doMove(int r, int c) {
-		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
+//		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
 //		setContentView(R.layout.activity_questions);
-//		temp.setText(String.format("doing move (%d,%d)",r,c));
+		if (!moveAvailable(r,c)) {
+			Log.d(MainActivity.TAG,String.format("move (%d,%d) is invalid",c,r));
+			for(ReversiGame.Move a: availableMoves) {
+				Log.d(MainActivity.TAG,String.format("available: (%d,%d)",a.column,a.row));
+			}
+			return;
+		}
 		if(game.lightTurn(c, r+1)) {
-//			temp.setText(String.format("did move (col=%d,row=%d) with result %s",c+1,r+1, success?"G":"B"));
 			switch (game.hasWon(ReversiGame.WHITE)) {
 	            case 'w':
-	            	temp.setText("W");
+//	            	temp.setText("W");
 	            	gameOverAlert(getResources().getString(R.string.game_over_win));
-//	            	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("Congratulations! You won!").setNeutralButton("Close", null).show();  
+	            	updateButtons();
 	                return;
 	            case 't':
-	            	temp.setText("T");
+//	            	temp.setText("T");
 	            	gameOverAlert(getResources().getString(R.string.game_over_tie));
-//	            	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You tied!").setNeutralButton("Close", null).show();
+	            	updateButtons();
 	                return;
 	            case 'l':
-	            	temp.setText("L");
+//	            	temp.setText("L");
 	            	gameOverAlert(getResources().getString(R.string.game_over_lose));
-//	            	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You lost :(").setNeutralButton("Close", null).show();
+	            	updateButtons();
 	                return;
             }
             ReversiGame.Move m = game.blackTurn();
-            temp.setText("black ("+m.column+", "+m.row+")");
+//            temp.setText("black ("+m.column+", "+m.row+")");
             
             //skip dark turn if no moves
             if (!m.isValid()) {
-            	temp.setText("black has no moves ("+m.column+", "+m.row+")");
+//            	temp.setText("black has no moves ("+m.column+", "+m.row+")");
             }
             else {
 				while (!game.canMove(ReversiGame.WHITE)) {
 		            m = game.blackTurn();
-		            temp.setText(m.column + " " + m.row);
+//		            temp.setText(m.column + " " + m.row);
 		            switch (game.hasWon(ReversiGame.BLACK)) {
 		                case 'w':
-		                	temp.setText("L");
+//		                	temp.setText("L");
 		                	gameOverAlert(getResources().getString(R.string.game_over_lose));
-//		                	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You lost :(").setNeutralButton("Close", null).show();
-		                    return;
+		                	updateButtons();
+		                	return;
 		                case 't':
-		                	temp.setText("T");
+//		                	temp.setText("T");
 		                	gameOverAlert(getResources().getString(R.string.game_over_tie));
-//		                	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You tied!").setNeutralButton("Close", null).show();
+		                	updateButtons();
 		                	return;
 		                case 'l':
-		                	temp.setText("W");
+//		                	temp.setText("W");
 		                	gameOverAlert(getResources().getString(R.string.game_over_win));
-//		                	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("Congratulations! You won!").setNeutralButton("Close", null).show();
+		                	updateButtons();
 		                    return;
 		            }
 		        }
@@ -159,15 +173,15 @@ public class GameBoard extends Activity {
 	}
 	
 	public void gameRedo(View v) {
-		boolean success = game.redo();
-		Log.d(MainActivity.TAG, success?"Redo Success":"Redo fail");
+//		boolean success = game.redo();
+//		Log.d(MainActivity.TAG, success?"Redo Success":"Redo fail");
 		updateButtons();
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.game_board, menu);
+		// getMenuInflater().inflate(R.menu.game_board, menu);
 		return true;
 	}
 	
@@ -261,19 +275,33 @@ public class GameBoard extends Activity {
 		
 	}
 	
+	boolean moveAvailable(int r, int c) {
+		for(ReversiGame.Move a: availableMoves) {
+			if (a.equals(new ReversiGame.Move(c,r))) return true;
+		}
+		return false;
+	}
+	
 	private void updateButtons() {
 		String display = game.display();
-		String[] gb = display.split("\n"); 
+		String[] gb = display.split("\n");
+		blackScore = 0;
+		whiteScore = 0;
+		availableMoves.clear();
         for(int k = 0; k < 8; ++k) {
             for(int n = 0; n < 8; ++n) {
                 switch (gb[k].charAt(n)) {
-					case WHITE: 
+					case WHITE:
+						whiteScore++;
 						board[n][k].setImageResource(R.drawable.reversi_white);
 						break;
 					case BLACK:
+						blackScore++;
 						board[n][k].setImageResource(R.drawable.reversi_black);
 						break;
 					case MOVE:
+						availableMoves.add(new ReversiGame.Move(k,n));
+						Log.d(MainActivity.TAG,String.format("move (%d,%d) added to available list",k,n));
 						board[n][k].setImageResource(R.drawable.reversi_move);
 						break;
 					case EMPTY:
@@ -282,6 +310,7 @@ public class GameBoard extends Activity {
                 }
             }
         }
+        temp.setText("Score: White - "+whiteScore+", Black - "+blackScore);
 	}
 	
 	public void but00(View v) {

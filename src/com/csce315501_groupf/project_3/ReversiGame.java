@@ -32,7 +32,7 @@ public class ReversiGame {
 	private static final int R4 = -10; // corner border
 	private static final int R5 = 50;  // corner
 	
-	class Move {
+	static class Move {
 		int row;
 		int column;
 		
@@ -47,6 +47,10 @@ public class ReversiGame {
 		
 		boolean isValid() {
 			return row >= 0 && column >= 0;
+		}
+		
+		boolean equals(Move b) {
+			return row == b.row && column == b.column;
 		}
 	}
 	
