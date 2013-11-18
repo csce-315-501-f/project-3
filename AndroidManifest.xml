@@ -32,11 +32,19 @@
         </activity>
         <activity
             android:name="com.csce315501_groupf.project_3.Questions"
-            android:parentActivityName="com.csce315501_groupf.project_3.GameBoard"
-            android:label="@string/title_activity_questions" >
-     	   <meta-data
-          	  android:name="android.support.PARENT_ACTIVITY"
-          	  android:value="com.csce315501_groupf.project_3.GameBoard" />
+            android:label="@string/title_activity_questions"
+            android:parentActivityName="com.csce315501_groupf.project_3.GameBoard" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.csce315501_groupf.project_3.GameBoard" />
+        </activity>
+        <activity
+            android:name="com.csce315501_groupf.project_3.ScoreActivity"
+            android:label="@string/title_activity_score" 
+            android:parentActivityName="com.csce315501_groupf.project_3.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.csce315501_groupf.project_3.MainActivity" />
         </activity>
     </application>
 

@@ -2,8 +2,10 @@ package com.csce315501_groupf.project_3;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -70,19 +72,25 @@ public class GameBoard extends Activity {
 	
 	private void doMove(int r, int c) {
 		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
-		setContentView(R.layout.activity_questions);
+//		setContentView(R.layout.activity_questions);
 //		temp.setText(String.format("doing move (%d,%d)",r,c));
 		if(game.lightTurn(c, r+1)) {
 //			temp.setText(String.format("did move (col=%d,row=%d) with result %s",c+1,r+1, success?"G":"B"));
 			switch (game.hasWon(ReversiGame.WHITE)) {
 	            case 'w':
 	            	temp.setText("W");
+	            	gameOverAlert(getResources().getString(R.string.game_over_win));
+//	            	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("Congratulations! You won!").setNeutralButton("Close", null).show();  
 	                return;
 	            case 't':
 	            	temp.setText("T");
+	            	gameOverAlert(getResources().getString(R.string.game_over_tie));
+//	            	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You tied!").setNeutralButton("Close", null).show();
 	                return;
 	            case 'l':
 	            	temp.setText("L");
+	            	gameOverAlert(getResources().getString(R.string.game_over_lose));
+//	            	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You lost :(").setNeutralButton("Close", null).show();
 	                return;
             }
             ReversiGame.Move m = game.blackTurn();
@@ -99,18 +107,49 @@ public class GameBoard extends Activity {
 		            switch (game.hasWon(ReversiGame.BLACK)) {
 		                case 'w':
 		                	temp.setText("L");
+		                	gameOverAlert(getResources().getString(R.string.game_over_lose));
+//		                	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You lost :(").setNeutralButton("Close", null).show();
 		                    return;
 		                case 't':
 		                	temp.setText("T");
-		                    return;
+		                	gameOverAlert(getResources().getString(R.string.game_over_tie));
+//		                	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("You tied!").setNeutralButton("Close", null).show();
+		                	return;
 		                case 'l':
 		                	temp.setText("W");
+		                	gameOverAlert(getResources().getString(R.string.game_over_win));
+//		                	new AlertDialog.Builder(this).setTitle("Game Over!").setMessage("Congratulations! You won!").setNeutralButton("Close", null).show();
 		                    return;
 		            }
 		        }
             }
 		}
 		updateButtons();
+	}
+	
+	public void gameOverAlert(String text) {
+		AlertDialog alert = new AlertDialog.Builder(this).setTitle(getResources().getString(R.string.game_over_title)).setMessage(text).setNegativeButton("View Scores", null).setPositiveButton("Start New Game", null).show();
+		Button p = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+		Button n = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
+		p.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// go to settings
+				Intent intent = new Intent(arg0.getContext(),MainActivity.class);
+		    	startActivity(intent);
+			}
+			
+		});
+		n.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(arg0.getContext(),ScoreActivity.class);
+		    	startActivity(intent);
+			}
+			
+		});
 	}
 	
 	public void gameUndo(View v) {
