@@ -1,11 +1,20 @@
 package com.csce315501_groupf.project_3;
 
-import android.os.Bundle;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class Questions extends Activity {
-
+	
+	private String category;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,5 +27,5 @@ public class Questions extends Activity {
 		getMenuInflater().inflate(R.menu.questions, menu);
 		return true;
 	}
-
+	
 }

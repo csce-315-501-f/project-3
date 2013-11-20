@@ -1,19 +1,24 @@
 package com.csce315501_groupf.project_3;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class GameBoard extends Activity {
@@ -36,6 +41,9 @@ public class GameBoard extends Activity {
 	private ArrayList<ReversiGame.Move> availableMoves;
 	
 	private boolean hasSDCard;
+	
+	private List<QuestionsPullParser.Question> questions;
+	private List<QuestionsPullParser.Question> usedQuestions;
 	
 	ReversiGame game;
 	
@@ -68,7 +76,7 @@ public class GameBoard extends Activity {
 		Log.d(MainActivity.TAG, "buttons setup");
 		
 		game = new ReversiGame(difficulty.toLowerCase().charAt(0));
-		
+		populateQuestions();
 		updateButtons();
 	}
 
@@ -81,7 +89,9 @@ public class GameBoard extends Activity {
 	
 	private void doMove(int r, int c) {
 //		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
-//		setContentView(R.layout.activity_questions);
+//		setupQuestion();
+		setContentView(R.layout.activity_questions);
+		populateQuestions();
 		if (!moveAvailable(r,c)) {
 			Log.d(MainActivity.TAG,String.format("move (%d,%d) is invalid",c,r));
 			for(ReversiGame.Move a: availableMoves) {
@@ -312,6 +322,54 @@ public class GameBoard extends Activity {
         }
         temp.setText("Score: White - "+whiteScore+", Black - "+blackScore);
 	}
+	
+	private void setupQuestion() {
+		RadioGroup aRadioGroup = (RadioGroup)findViewById(R.id.answersRadioGroup);
+		RadioButton aRadioButton = new RadioButton(this);
+		
+	}
+	
+	private void populateQuestions() {
+		InputStream stream = null;
+	    // Instantiate the parser
+	    QuestionsPullParser qpp = new QuestionsPullParser();
+	    
+	    try {
+//	    	Log.d(MainActivity.TAG,String.format("Beginning parsing"));
+	        stream = getQuestionsXmlByCategory();
+//	        Log.d(MainActivity.TAG,String.format("Opened Stream"));
+	        questions = qpp.parse(stream);
+//	        Log.d(MainActivity.TAG,String.format("Finished parsing"));
+	    // Makes sure that the InputStream is closed after the app is
+	    // finished using it.
+	    } 
+	    catch (Exception e) {
+//	    	Log.d(MainActivity.TAG,String.format("Failed parsing"));
+	    }
+	    finally {
+	        if (stream != null) {
+	            try {
+	            	stream.close();
+	            }
+	            catch (Exception e) {}
+	        } 
+	    }
+	}
+	
+	private InputStream getQuestionsXmlByCategory() throws IOException {
+		AssetManager assetManager = getAssets();
+		InputStream inputStream = null;
+		try {
+//			inputStream = assetManager.open(category + ".xml");
+//			inputStream = assetManager.open("astronomy.xml");
+			inputStream = this.getResources().openRawResource(R.raw.astronomy);
+		} catch (Exception e) {
+			Log.d(MainActivity.TAG,"Failed parsing: " + e.getMessage());
+//			Log.d("tag", e.getMessage());
+		}
+	    return inputStream;	
+	}
+	
 	
 	public void but00(View v) {
 		doMove(0,0);
