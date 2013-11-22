@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import com.csce315501_groupf.project_3.ReversiGame.Move;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -44,6 +47,9 @@ public class GameBoard extends Activity {
 	
 	private List<QuestionsPullParser.Question> questions;
 	private List<QuestionsPullParser.Question> usedQuestions;
+	private int correctId;
+	private boolean wasCorrect;
+	private ReversiGame.Move currentMove;
 	
 	ReversiGame game;
 	
@@ -62,6 +68,9 @@ public class GameBoard extends Activity {
 		blackScore = 0;
 		whiteScore = 0;
 		availableMoves = new ArrayList<ReversiGame.Move>();
+		
+		questions = new ArrayList<QuestionsPullParser.Question>();
+		usedQuestions = new ArrayList<QuestionsPullParser.Question>();
 		
 		Intent intent = getIntent();
 		difficulty = intent.getStringExtra(MainActivity.GAME_DIFFICULTY);
@@ -82,22 +91,39 @@ public class GameBoard extends Activity {
 
 
 	public void submitQuestion(View v) {
-		setContentView(R.layout.game_board);
-		setupButtons();
-		updateButtons();
+		RadioGroup aRadioGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
+		int id = aRadioGroup.getCheckedRadioButtonId();
+		Log.d(MainActivity.TAG,String.format("Correct id was %d, your choice was %d",correctId,id));
+		wasCorrect = (correctId == id)?true:false;
+//		Log.d(MainActivity.TAG,String.format("Question answer was: %s",wasCorrect));
+		questionAlert();
 	}
 	
 	private void doMove(int r, int c) {
-//		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
-//		setupQuestion();
-		setContentView(R.layout.activity_questions);
-		populateQuestions();
 		if (!moveAvailable(r,c)) {
 			Log.d(MainActivity.TAG,String.format("move (%d,%d) is invalid",c,r));
 			for(ReversiGame.Move a: availableMoves) {
 				Log.d(MainActivity.TAG,String.format("available: (%d,%d)",a.column,a.row));
 			}
 			return;
+		}
+		setContentView(R.layout.activity_questions);
+		setupQuestion();
+		currentMove = new ReversiGame.Move(c,r);
+	}
+	
+	private void makeMove() {
+		int r = currentMove.row;
+		int c = currentMove.column;
+//		Log.d(MainActivity.TAG,String.format("doing move (%d,%d)",r,c));
+		Log.d(MainActivity.TAG,String.format("DOMOVE: Question answer was (before): %s",wasCorrect));
+		if (!wasCorrect) { // use random move
+			Log.d(MainActivity.TAG,String.format("DOMOVE: Question answer was (after): %s",wasCorrect));
+			Random rand = new Random();
+			int n = rand.nextInt(availableMoves.size());
+			ReversiGame.Move m = availableMoves.get(n);
+			c = m.column;
+			r = m.row;
 		}
 		if(game.lightTurn(c, r+1)) {
 			switch (game.hasWon(ReversiGame.WHITE)) {
@@ -149,6 +175,29 @@ public class GameBoard extends Activity {
             }
 		}
 		updateButtons();
+	}
+	
+	public void questionAlert() {
+		RadioButton rbtn = (RadioButton) findViewById(correctId);
+		String answer = rbtn.getText().toString();
+		String title = (wasCorrect)?"Correct!":"Incorrect. :(";
+		String message = (wasCorrect)?"Good Job!":"The correct answer was: "+answer;
+		final AlertDialog alert = new AlertDialog.Builder(this).setTitle(title).setMessage(message).setPositiveButton("Continue", null).show();
+		Button p = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+		p.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// go to settings
+//				Intent intent = new Intent(arg0.getContext(),MainActivity.class);
+//		    	startActivity(intent);
+				setContentView(R.layout.game_board);
+				setupButtons();
+				makeMove();
+				updateButtons();
+				alert.dismiss();
+			}
+			
+		});
 	}
 	
 	public void gameOverAlert(String text) {
@@ -203,6 +252,7 @@ public class GameBoard extends Activity {
 	
 
 	private void setupButtons() {
+		temp = (TextView) findViewById(R.id.temp);
 		board = new ImageButton[ROWS][COLUMNS];
 		
 		board[0][0] = (ImageButton)findViewById(R.id.but00);
@@ -311,7 +361,7 @@ public class GameBoard extends Activity {
 						break;
 					case MOVE:
 						availableMoves.add(new ReversiGame.Move(k,n));
-						Log.d(MainActivity.TAG,String.format("move (%d,%d) added to available list",k,n));
+//						Log.d(MainActivity.TAG,String.format("move (%d,%d) added to available list",k,n));
 						board[n][k].setImageResource(R.drawable.reversi_move);
 						break;
 					case EMPTY:
@@ -320,13 +370,59 @@ public class GameBoard extends Activity {
                 }
             }
         }
-        temp.setText("Score: White - "+whiteScore+", Black - "+blackScore);
+        temp.setText("White: "+whiteScore+", Black: "+blackScore);
 	}
 	
 	private void setupQuestion() {
-		RadioGroup aRadioGroup = (RadioGroup)findViewById(R.id.answersRadioGroup);
-		RadioButton aRadioButton = new RadioButton(this);
+		Random rand = new Random();
+		RadioGroup aRadioGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
+		TextView aTextView = (TextView) findViewById(R.id.question);
+//		Log.d(MainActivity.TAG,String.format("SetupQuestions: aRadioGroup == %s",(aRadioGroup==null)?"null":"not null"));
+		aRadioGroup.clearCheck();
+		aRadioGroup.removeAllViews();
+		Log.d(MainActivity.TAG,String.format("Removed all views"));
+		QuestionsPullParser.Question q;
+		if (questions.size() > 0) { // available question
+			Log.d(MainActivity.TAG,String.format("Getting question"));
+			int n = rand.nextInt(questions.size());
+//			q = questions.get(0); // for debugging
+			q = questions.get(n); // picks random question
+			Log.d(MainActivity.TAG,String.format("Got question"));
+			usedQuestions.add(q);
+			Log.d(MainActivity.TAG,String.format("Added question to used List"));
+			questions.remove(0);
+			Log.d(MainActivity.TAG,String.format("Removed question from new list"));
+		}
+		else { // no questions, put used list back into question pool
+			Log.d(MainActivity.TAG,String.format("questions.size <= 0"));
+			questions = usedQuestions;
+			usedQuestions.clear();
+			q = questions.get(0);
+			usedQuestions.add(questions.get(0));
+			questions.remove(0);
+		}
+		Log.d(MainActivity.TAG,String.format("Setting up question view"));
+		aTextView.setText(q.q);
+		ArrayList<RadioButton> rbtns = new ArrayList<RadioButton>();
+		for (int i = 0; i < q.a.size(); ++i) {
+			rbtns.add(new RadioButton(this));
+			rbtns.get(rbtns.size()-1).setId(i);
+			rbtns.get(rbtns.size()-1).setText(q.a.get(i));
+			Log.d(MainActivity.TAG,String.format("Adding button with a: %s", q.a.get(i)));
+//			aRadioGroup.addView(rbtns.get(rbtns.size()-1));
+		}
+		rbtns.add(new RadioButton(this));
+		correctId = q.a.size();
+		rbtns.get(rbtns.size()-1).setId(correctId);
+		rbtns.get(rbtns.size()-1).setText(q.c);
 		
+		while (!rbtns.isEmpty()) {
+			int n = rand.nextInt(rbtns.size());
+			aRadioGroup.addView(rbtns.get(n));
+			rbtns.remove(n);
+		}
+//		rbtns.get(0).setChecked(true);
+		((RadioButton)aRadioGroup.getChildAt(0)).setChecked(true);
 	}
 	
 	private void populateQuestions() {

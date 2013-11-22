@@ -121,17 +121,17 @@
         <q>What happen to stars as they grow old?</q>
         <a correct="true">Expand</a>
         <a>Shrink</a>
-        <a></a>
-        <a></a>
+        <a>Levitate</a>
+        <a>Grow a beard</a>
     </question>
     
     
     <question>
         <q>A pathway of an object around another object is called a/an?</q>
         <a correct="true">Orbit</a>
-        <a></a>
-        <a></a>
-        <a></a>
+        <a>Computer</a>
+        <a>Axis</a>
+        <a>Revolution</a>
     </question>
     
     
@@ -342,7 +342,7 @@
         <a>The gravity of the sun</a>
         <a>Astronomers are not sure</a>
         <a>The asteroids</a>
-        <a>Solar wind</a>
+        <a correct="true">Solar wind</a>
     </question>
     
     

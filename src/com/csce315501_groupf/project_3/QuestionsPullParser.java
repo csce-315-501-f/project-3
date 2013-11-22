@@ -56,7 +56,7 @@ public class QuestionsPullParser {
 	            continue;
 	        }
 	        String name = parser.getName();
-	        Log.d(MainActivity.TAG,String.format("Questions: name = %s",name));
+//	        Log.d(MainActivity.TAG,String.format("Questions: name = %s",name));
 	        // Starts by looking for the entry tag
 	        if (name.equals("question")) {
 	            questions.add(readQuestion(parser));
@@ -72,7 +72,7 @@ public class QuestionsPullParser {
 //	    Log.d(MainActivity.TAG,String.format("Parsing QUESTION"));
 	    String q = null;
 	    String c = null;
-	    ArrayList<String> a = null;
+	    ArrayList<String> a = new ArrayList<String>();
 	    while (parser.next() != XmlPullParser.END_TAG) {
 	        if (parser.getEventType() != XmlPullParser.START_TAG) {
 	            continue;
@@ -81,9 +81,11 @@ public class QuestionsPullParser {
 //	        String correct = parser.
 	        if (name.equals("q")) {
 	            q = readQ(parser);
-	            Log.d(MainActivity.TAG,String.format("QUESTION: %s",q));
+//	            Log.d(MainActivity.TAG,String.format("QUESTION: %s",q));
 	        } else if (name.equals("a")) {
-	            a = readA(parser);
+	        	int att = parser.getAttributeCount();
+	        	if (att > 0) c = readA(parser);
+	        	else 		 a.add(readA(parser));
 	        } else {
 	            skip(parser);
 	        }
@@ -99,12 +101,12 @@ public class QuestionsPullParser {
 	    return q;
 	}
 	
-	private ArrayList<String> readA(XmlPullParser parser) throws IOException, XmlPullParserException {
+	private String readA(XmlPullParser parser) throws IOException, XmlPullParserException {
 //		Log.d(MainActivity.TAG,String.format("Parsing A"));
 		parser.require(XmlPullParser.START_TAG, ns, "a");
-	    ArrayList<String> a = new ArrayList<String>();
-	    String t = readText(parser);
-	    a.add(t);
+//	    ArrayList<String> a = new ArrayList<String>();
+		String a = readText(parser);
+//	    a.add(t);
 	    parser.require(XmlPullParser.END_TAG, ns, "a");
 	    return a;
 	}
