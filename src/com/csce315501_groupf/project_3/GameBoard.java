@@ -1,12 +1,12 @@
 package com.csce315501_groupf.project_3;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import com.csce315501_groupf.project_3.ReversiGame.Move;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -452,13 +452,36 @@ public class GameBoard extends Activity {
 	    }
 	}
 	
+	@SuppressWarnings("resource")
 	private InputStream getQuestionsXmlByCategory() throws IOException {
 		AssetManager assetManager = getAssets();
+		File sddir;
+		File[] xmls = null;
+		if (hasSDCard) {
+			sddir = getExternalFilesDir(null);
+			xmls = sddir.listFiles();
+		}
 		InputStream inputStream = null;
 		try {
 //			inputStream = assetManager.open(category + ".xml");
 //			inputStream = assetManager.open("astronomy.xml");
-			inputStream = this.getResources().openRawResource(R.raw.astronomy);
+			boolean found = false;
+			if (hasSDCard)
+				for(File f : xmls) {
+					Log.d(MainActivity.TAG,"Found file: " + f.getName());
+					if (f.getName().equalsIgnoreCase(category)) {
+						inputStream = new FileInputStream(f);
+						found = true;
+					}
+				}
+			if (!found) {
+				Log.d(MainActivity.TAG,"Using default astronomy file");
+				inputStream = this.getResources().openRawResource(R.raw.astronomy);
+			}
+			else {
+				Log.d(MainActivity.TAG,"Found file on sdcard");
+			}
+				
 		} catch (Exception e) {
 			Log.d(MainActivity.TAG,"Failed parsing: " + e.getMessage());
 //			Log.d("tag", e.getMessage());
