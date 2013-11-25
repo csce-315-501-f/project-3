@@ -225,18 +225,6 @@ public class GameBoard extends Activity {
 		});
 	}
 	
-	public void gameUndo(View v) {
-		boolean success = game.undo();
-		Log.d(MainActivity.TAG, success?"Undo Success":"Undo fail");
-		updateButtons();
-	}
-	
-	public void gameRedo(View v) {
-//		boolean success = game.redo();
-//		Log.d(MainActivity.TAG, success?"Redo Success":"Redo fail");
-		updateButtons();
-	}
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -247,7 +235,6 @@ public class GameBoard extends Activity {
 	
     protected void onSaveInstanceState(Bundle outState) {
     	super.onSaveInstanceState(outState);
-    	
     }
 	
 

@@ -69,8 +69,6 @@ public class ReversiGame {
 	}
 
 	String[][] board;
-	Stack<String[][]> boardUndoStates;
-	Stack<String[][]> boardRedoStates;
 	int[][] boardWeights;
 	
 	char difficulty;
@@ -83,8 +81,6 @@ public class ReversiGame {
 	public ReversiGame(char diff) {
 		initBoard();
 		initBoardWeights();
-		boardUndoStates = new Stack<String[][]>();
-		boardRedoStates = new Stack<String[][]>();
 		difficulty = diff;
 	}
 	
@@ -199,23 +195,8 @@ public class ReversiGame {
 	     boardWeights[H][0] = R5;
 	     boardWeights[H][7] = R5;
 	}
-
-	void saveBoardState() {
-		// board state is saved after every DARK turn, so that
-	    // the board can be reset to the last time the player was able to play
-		String[][] backupBoard = new String[COLUMNS][ROWS];
-	    for (int i = 0; i < COLUMNS; ++i) {
-	    	for (int j = 0; j < ROWS; ++j) {
-	    		backupBoard[i][j] = board[i][j];
-	    	}
-	    }
-		boardUndoStates.push(backupBoard);
-	}
 	
 	boolean lightTurn(int column, int row) {
-		// removing undo/redo functionality for now since it's crashing the device
-		saveBoardState();
-	    boardRedoStates.clear();
 	    if (board[column][row-1] == BLACK || board[column][row-1] == WHITE) 
 	        return false;
 	    board[column][row-1] = WHITE;
@@ -276,32 +257,6 @@ public class ReversiGame {
 	    f[6] = doFlip(x,y,1,0,flip);
 	    f[7] = doFlip(x,y,1,-1,flip);
 	    return f[0] || f[1] || f[2] || f[3] || f[4] || f[5] || f[6] || f[7];
-	}
-
-    boolean undo() {
-    	if (boardUndoStates.isEmpty()) return false;
-    	String[][] backupBoard = new String[COLUMNS][ROWS];
-	    for (int i = 0; i < COLUMNS; ++i) {
-	    	for (int j = 0; j < ROWS; ++j) {
-	    		backupBoard[i][j] = board[i][j];
-	    	}
-	    }
-    	boardRedoStates.push(backupBoard);
-    	board = boardUndoStates.pop();
-    	return true;
-    }
-    
-	boolean redo() {
-		if (boardRedoStates.isEmpty()) return false;
-		String[][] backupBoard = new String[COLUMNS][ROWS];
-	    for (int i = 0; i < COLUMNS; ++i) {
-	    	for (int j = 0; j < ROWS; ++j) {
-	    		backupBoard[i][j] = board[i][j];
-	    	}
-	    }
-		boardUndoStates.push(backupBoard);
-		board = boardRedoStates.pop();
-		return true;
 	}
 
 	ArrayList<Move> getMoves(String turn) {
