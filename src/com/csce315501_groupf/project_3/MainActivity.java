@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 	static final String QUESTION_CATEGORY = "com.csce315501_groupf.project3.QUESTION_CATEGORY";
 	static final String SD_CARD = "com.csce315501_groupf.project3.SD_CARD";
 	static final String PREF_FILE = "REVERSI_PREFS";
+	static final String SCORE_FILE = "REVERSI_SCORE";
+	
 	static final String TAG = "com.reversi";
 	
 	private Spinner spinGameMode;
@@ -227,6 +229,11 @@ public class MainActivity extends Activity {
     	intent.putExtra(GAME_DIFFICULTY, gameDifficulty);
     	intent.putExtra(QUESTION_CATEGORY, questionCategory);
     	intent.putExtra(SD_CARD, hasSDCard);
+    	startActivity(intent);
+    }
+    
+    public void showScores(View v) {
+    	Intent intent = new Intent(this,ScoreActivity.class);
     	startActivity(intent);
     }
     

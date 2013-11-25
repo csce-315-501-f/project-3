@@ -20,30 +20,22 @@
         android:gravity="center_horizontal" />
 
    <TableLayout
+       	android:id="@+id/scoreTableLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="34dp" >
 
         <TableRow
-            android:id="@+id/tableRow1"
+            android:id="@+id/scoreTableHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-            <TextView 
-                android:id="@+id/scoreTableRow11"
-		        android:layout_width="0dp"
-		        android:layout_height="wrap_content"
-		        android:layout_weight="1"
-		        android:text="@string/score_name"
-		        android:textSize="24sp"
-		        android:textStyle="bold"
-                />
             <TextView 
                 android:id="@+id/scoreTableRow12"
 		        android:layout_width="0dp"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
-		        android:gravity="right"
+		        android:gravity="center"
 		        android:text="@string/score_score"
 		        android:textSize="24sp"
 		        android:textStyle="bold"

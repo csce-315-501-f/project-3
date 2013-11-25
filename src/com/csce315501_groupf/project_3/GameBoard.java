@@ -5,13 +5,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,6 +54,11 @@ public class GameBoard extends Activity {
 	private boolean wasCorrect;
 	private ReversiGame.Move currentMove;
 	
+	private int correctCount;
+	private int totalCount;
+	SharedPreferences score;
+	SharedPreferences.Editor scoreEditor;
+	
 	ReversiGame game;
 	
 	TextView temp;
@@ -60,6 +68,9 @@ public class GameBoard extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		score = getSharedPreferences(MainActivity.SCORE_FILE,1);
+		scoreEditor = score.edit();
 	
 		Log.d(MainActivity.TAG, "create game board");
 		
@@ -68,6 +79,9 @@ public class GameBoard extends Activity {
 		blackScore = 0;
 		whiteScore = 0;
 		availableMoves = new ArrayList<ReversiGame.Move>();
+		
+		correctCount = 0;
+		totalCount = 0;
 		
 		questions = new ArrayList<QuestionsPullParser.Question>();
 		usedQuestions = new ArrayList<QuestionsPullParser.Question>();
@@ -85,17 +99,19 @@ public class GameBoard extends Activity {
 		Log.d(MainActivity.TAG, "buttons setup");
 		
 		game = new ReversiGame(difficulty.toLowerCase().charAt(0));
+			
 		populateQuestions();
 		updateButtons();
 	}
 
 
 	public void submitQuestion(View v) {
+		++totalCount;
 		RadioGroup aRadioGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
 		int id = aRadioGroup.getCheckedRadioButtonId();
 		Log.d(MainActivity.TAG,String.format("Correct id was %d, your choice was %d",correctId,id));
 		wasCorrect = (correctId == id)?true:false;
-//		Log.d(MainActivity.TAG,String.format("Question answer was: %s",wasCorrect));
+		if (wasCorrect) ++correctCount;
 		questionAlert();
 	}
 	
@@ -128,17 +144,15 @@ public class GameBoard extends Activity {
 		if(game.lightTurn(c, r+1)) {
 			switch (game.hasWon(ReversiGame.WHITE)) {
 	            case 'w':
-//	            	temp.setText("W");
+	            	updateHighScore();
 	            	gameOverAlert(getResources().getString(R.string.game_over_win));
 	            	updateButtons();
 	                return;
 	            case 't':
-//	            	temp.setText("T");
 	            	gameOverAlert(getResources().getString(R.string.game_over_tie));
 	            	updateButtons();
 	                return;
 	            case 'l':
-//	            	temp.setText("L");
 	            	gameOverAlert(getResources().getString(R.string.game_over_lose));
 	            	updateButtons();
 	                return;
@@ -156,17 +170,15 @@ public class GameBoard extends Activity {
 //		            temp.setText(m.column + " " + m.row);
 		            switch (game.hasWon(ReversiGame.BLACK)) {
 		                case 'w':
-//		                	temp.setText("L");
 		                	gameOverAlert(getResources().getString(R.string.game_over_lose));
 		                	updateButtons();
 		                	return;
 		                case 't':
-//		                	temp.setText("T");
 		                	gameOverAlert(getResources().getString(R.string.game_over_tie));
 		                	updateButtons();
 		                	return;
 		                case 'l':
-//		                	temp.setText("W");
+		                	updateHighScore();
 		                	gameOverAlert(getResources().getString(R.string.game_over_win));
 		                	updateButtons();
 		                    return;
@@ -175,6 +187,22 @@ public class GameBoard extends Activity {
             }
 		}
 		updateButtons();
+	}
+	
+	public void updateHighScore() {
+		Log.d(MainActivity.TAG, String.format("Updating High Scores"));
+    	Map<String, ?> scoreMap = score.getAll();
+    	scoreEditor.putFloat(new Date().toString(), (float) ((double)correctCount/(double)totalCount*100.0));
+    	if (scoreMap.size() > 10) {
+        	Map.Entry<String, ?> smallest = scoreMap.entrySet().iterator().next();
+        	for (Map.Entry<String, ?> i: scoreMap.entrySet()) {
+        		if (Float.parseFloat(i.getValue().toString()) < Float.parseFloat(smallest.getValue().toString())) {
+        			smallest = i;
+        		}
+        	}
+        	scoreEditor.remove(smallest.getKey());
+    	}
+    	scoreEditor.commit();
 	}
 	
 	public void questionAlert() {
