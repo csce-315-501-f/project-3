@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class MainActivity extends Activity {
@@ -37,6 +39,9 @@ public class MainActivity extends Activity {
 	private List<String> gameDifficulties;
 	private String questionCategory;
 	private List<String> questionCategories;
+	File sddir;
+	File[] xmls = null;
+	ArrayList<String> xmlNames = new ArrayList<String>();
 	
 	private int hasSDCard;
 	
@@ -48,7 +53,7 @@ public class MainActivity extends Activity {
         Log.d(TAG,"onCreate");
         
         Log.d(TAG, "onCreate: setting up xml database on external media");
-        File file = new File(getExternalFilesDir(null), "astronomy.xml");
+        File file = new File(getExternalFilesDir(null), "Astronomy");
         if (!file.exists())
 	        try {
 	        	InputStream is = getResources().openRawResource(R.raw.astronomy);
@@ -59,6 +64,7 @@ public class MainActivity extends Activity {
 	        	is.close();
 	        	os.close();
 	        	hasSDCard = 1;
+	        	Log.d(TAG, "Found sdcard");
 	        }
 	        catch(Exception e) {
 	        	hasSDCard = 0;
@@ -68,10 +74,24 @@ public class MainActivity extends Activity {
         	hasSDCard = 1;
         }
         
+        Log.d(TAG, "Transfered file if necessary");
+        if (hasSDCard > 0) {
+        	sddir = getExternalFilesDir(null);
+        	Log.d(TAG, "setup xml list");
+			xmls = sddir.listFiles();
+        }
+        
         // load XML data
         gameModes = (List<String>) Arrays.asList(getResources().getStringArray(R.array.txtGameModes));
         gameDifficulties = (List<String>) Arrays.asList(getResources().getStringArray(R.array.txtDifficulties));
-        questionCategories = (List<String>) Arrays.asList(getResources().getStringArray(R.array.txtCategories));
+        if (hasSDCard > 0) {
+        	for (File f : xmls) {
+        		xmlNames.add(f.getName());
+        	}
+        	questionCategories = (List<String>) xmlNames;
+        }
+        else 
+        	questionCategories = (List<String>) Arrays.asList(getResources().getStringArray(R.array.txtCategories));
         
         // restore menu state
         if (savedInstanceState == null) {
@@ -103,6 +123,8 @@ public class MainActivity extends Activity {
         spinGameDifficulty = (Spinner) findViewById(R.id.spinDifficulties);
         spinGameDifficulty.setSelection(gameDifficulties.indexOf(gameDifficulty));
         spinQuestionCategory = (Spinner) findViewById(R.id.spinCategory);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.textview, questionCategories);
+        spinQuestionCategory.setAdapter(adapter);
         spinQuestionCategory.setSelection(questionCategories.indexOf(questionCategory));
         
         // set spinner callbacks

@@ -22,8 +22,7 @@
     <string name="txtCategory">Category:</string>
 
     <string-array name="txtCategories">
-        <item>All Categories</item>
-        <item>General</item>
+        <item>Astronomy</item>
     </string-array>
 
     <string name="txtSubmit">Submit</string>
