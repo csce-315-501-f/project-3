@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<questions category= "biology">
+	<question>
+		<q>Concept of ecological pyramids was proposed by</q>
+		<a correct="true">Charles Elton</a>
+		<a>Tansley</a>
+		<a>Odum</a>
+		<a>Clements</a>
+	</question>
+
+	<question>
+		<q>The term 'Ecosystem' was coined by</q>
+		<a>Clements</a>
+		<a>Odum</a>
+		<a correct="true">Arthur G. Tansley</a>
+		<a>Elton</a>
+	</question>
+
+	<question>
+		<q>Xeric environment is characterized by</q>
+		<a correct="true">Low atmospheric humidity</a>
+		<a>High rate of vaporization</a>
+		<a>High precipitation</a>
+		<a>Extremes of temperatures</a>
+	</question>
+
+	<question>
+		<q>Which one of the following types of organisms occupy more than one trophic level in a pond ecosystem?</q>
+		<a>Phytoplankton</a>
+		<a>Frog</a>
+		<a>Zooplankton</a>
+		<a correct="true">Fish</a>
+	</question>
+
+	<question>
+		<q>Which one of the following statements is correct="true" for secondary succession?</q>
+		<a>It begins on a bare rock</a>
+		<a correct="true">It occurs on a deforested site</a>
+		<a>It follows primary succession</a>
+		<a>It is similar to primary succession except that it has a relatively fast pace</a>
+	</question>
+
+	<question>
+		<q>Total amount of living material at the various trophic levels of a food chain is depicted by pyramids of</q>
+		<a correct="true">Biomas</a>
+		<a>Numbers</a>
+		<a>Energy</a>
+		<a>All of these</a>
+	</question>
+
+	<question>
+		<q>Which one of the following statements for pyramid of energy is incorrect="true", whereas the remaining three are correct="true"?</q>
+		<a>It shows energy content of different trophic level organisms</a>
+		<a>Its base is broad</a>
+		<a correct="true">It is inverted in shape</a>
+		<a>It is upright in shape</a>
+	</question>
+
+	<question>
+		<q>Which one of the following animals may occupy more than one trophic levels in the same ecosystem at the same time?</q>
+		<a>Frog</a>
+		<a>Goat</a>
+		<a>Lion</a>
+		<a correct="true">Sparrow</a>
+	</question>
+
+	<question>
+		<q>Average total rainfall is 100 - 150 cm in ______, located in Australia, South America and Africa.</q>
+		<a correct="true">Chaparrals</a>
+		<a>Decidouud forest</a>
+		<a>Tropical Savannas</a>
+		<a>Temperate forest</a>
+	</question>
+
+	<question>
+		<q>Which of the following statements is correct="true"?</q>
+		<a>Least productive ecosystem is desert and deep lake</a>
+		<a>Most productive ecosystem is coral reef</a>
+		<a>Sugarcane is the most productive agroecosystem</a>
+		<a correct="true">All of the above</a>
+	</question>
+
+	<question>
+		<q>About 70% of total global carbon is found in</q>
+		<a correct="true">Oceans</a>
+		<a>Agroecosystems</a>
+		<a>Forests</a>
+		<a>Grasslands</a>
+	</question>
+
+	<question>
+		<q>Which of the following is correct="true"ly matched?</q>
+		<a>None</a>
+		<a>Butterfly -------- camouflage</a>
+		<a>Garden lizard -------- mimicry</a>
+		<a correct="true">House lizard -------- autotomy</a>
+	</question>
+
+	<question>
+		<q>Which of the following groups is absolutely essential functional component of the ecosystem?</q>
+		<a>Detritivores</a>
+		<a correct="true">Producers and detritivores</a>
+		<a>Producers</a>
+		<a>Producers and herbivores</a>
+	</question>
+
+	<question>
+		<q>Which of the following ecosystems has highest rate of gross primary production?</q>
+		<a>Mangroves</a>
+		<a correct="true">Equatorial rain forests</a>
+		<a>Grasslands</a>
+		<a>Coral reefs</a>
+	</question>
+
+	<question>
+		<q>When the two ecosystems overlap each other, the area is called</q>
+		<a>Habitat</a>
+		<a>Niche</a>
+		<a correct="true">Ecotone</a>
+		<a>Ecotype</a>
+	</question>
+
+	<question>
+		<q>Who proposed artificial system of classification</q>
+		<a correct="true">Linnaeus</a>
+		<a>Lamarck</a>
+		<a>Wallace</a>
+		<a>John Ray</a>
+		</question>
+
+	<question>
+		<q>Who formed the 'key' for identification of animals</q>
+		<a>Georges Cuvier</a>
+		<a>Theophrastus</a>
+		<a>Goethe</a>
+		<a correct="true">John Ray</a>
+	</question>
+
+	<question>
+		<q>Which phylum has a true coelom?</q>
+		<a>Mollusca</a>
+		<a>Cnidaria</a>
+		<a correct="true">Annelida</a>
+		<a>Porifera</a>
+		</question>
+
+	<question>
+		<q>Which organism possesses characteristics of plants and animals?</q>
+		<a correct="true">Euglena</a>
+		<a>Monera</a>
+		<a>Mycoplasma</a>
+		<a>Bacteria</a>
+	</question>
+
+	<question>
+		<q>A fat called blubber could be obtained from</q>
+		<a>Porpoises</a>
+		<a correct="true">Blue Whale</a>
+		<a>Dolphine</a>
+		<a>Bats</a>
+	</question>
+
+	<question>
+		<q>Which one of the following phylum is characterized by absence of true coelom?</q>
+		<a>Echinodermata</a>
+		<a>Annelida</a>
+		<a>Moolusca</a>
+		<a correct="true">Nematoda</a>
+	</question>
+
+	<question>
+		<q>Which one of the following pairs of animals comprises 'jawless fishes'?</q>
+		<a correct="true">Lampreys and hag fishes</a>
+		<a>Lampreys and eels</a>
+		<a>Gruppies and hag fishes</a>
+		<a>Mackerels and Rohu</a>
+		</question>
+
+	<question>
+		<q>In a sponge the whole inner surface of the asconoid is lined by</q>
+		<a>Pinacocytes</a>
+		<a>Porocytes</a>
+		<a>Amoebocytes</a>
+		<a correct="true">Choanocytes</a>
+	</question>
+
+	<question>
+		<q>Which one of the following kinds of animals is triploblastic?</q>
+		<a>Sponges</a>
+		<a>Corals</a>
+		<a>Ctenophotes</a>
+		<a correct="true">Flat worms</a>
+	</question>
+
+	<question>
+		<q>Which one of the following is not a member of the group Eutheria?</q>
+		<a>Mole</a>
+		<a correct="true">Platypus</a>
+		<a>Pangolin</a>
+		<a>Squirrel</a>
+	</question>
+
+	<question>
+		<q>The ______ are undifferentiated embryonic cells and produce the sex cells as well.</q>
+		<a correct="true">Archaeocytes</a>
+		<a>Chromocytes</a>
+		<a>Thesocytes</a>
+		<a>Myocytes</a>
+	</question>
+
+	<question>
+		<q>Which one of the following groups of animals is bilaterally symmetrical and triploblastic?</q>
+		<a>Coelenterates (Cnidarians)</a>
+		<a>Sponges</a>
+		<a correct="true">Aschelminthes (round worms)</a>
+		<a>Ctenophores</a>
+	</question>
+
+	<question>
+		<q>Why do camels have a long neck?</q>
+		<a>Cartilage pads between vertebra</a>
+		<a>More vertabrae</a>
+		<a>Vertebral plates between adjoining vertebrae</a>
+		<a correct="true">Increase in size of each vertebra</a>
+	</question>
+
+	<question>
+		<q>Which one of the following animals shows discontinuous distribution?</q>
+		<a correct="true">Lung fisher</a>
+		<a>Bats</a>
+		<a>Pacific salmons</a>
+		<a>Green muscles</a>
+	</question>
+
+	<question>
+		<q>Which of the followings are egg laying mammals?</q>
+		<a>Marsupials</a>
+		<a correct="true">Monotremes</a>
+		<a>Insectivores</a>
+		<a>Bats</a>
+	</question>
+
+	<question>
+		<q>A blood group has both A and B antigens but no antibodies, It is</q>
+		<a correct="true">AB</a>
+		<a>A</a>
+		<a>O</a>
+		<a>B</a>
+	</question>
+
+	<question>
+		<q>A compound formed in an organism for inhibiting growth of another organism is</q>
+		<a>Antigen</a>
+		<a correct="true">Antibody</a>
+		<a>Antiallergic</a>
+		<a>Antibiotic</a>
+	</question>
+
+	<question>
+		<q>A disease due to allergic reaction is</q>
+		<a>Trench fever</a>
+		<a>Enteric fever</a>
+		<a correct="true">Hay fever</a>
+		<a>Yellow fever</a>
+	</question>
+
+	<question>
+		<q>A molecule that produces an immune response is</q>
+		<a correct="true">Antigen</a>
+		<a>Mutagen</a>
+		<a>Antibody</a>
+		<a>Carcinogen</a>
+	</question>
+
+	<question>
+		<q>Which is involved in body defense</q>
+		<a>Macrophages</a>
+		<a>Lymphocytes</a>
+		<a>Neutrophils</a>
+		<a correct="true">All the above</a>
+	</question>
+
+	<question>
+		<q>A noninfectious unnatural and unusual reaction to asubstance or condition is</q>
+		<a>Toxin</a>
+		<a>Infection</a>
+		<a correct="true">Allergy</a>
+		<a>Immunity</a>
+	</question>
+
+	<question>
+		<q>Acquired immunity as developed after vaccination or infection is found in</q>
+		<a>Naturally acquires active immunity</a>
+		<a>Naturally acquires passive immunity</a>
+		<a>Artificially acquires active immunity</a>
+		<a correct="true">Artificially acquires passive immunity</a>
+	</question>
+
+	<question>
+		<q>Acquired immunity is found in</q>
+		<a>Invertebrates</a>
+		<a>Some Invertebrates</a>
+		<a correct="true">Vertebrates</a>
+		<a>Both vertebrates and invertebrates</a>
+	</question>
+
+	<question>
+		<q>Active immunity is due to</q>
+		<a correct="true">Memory cells</a>
+		<a>Helper T-cells</a>
+		<a>Killer T-cells</a>
+		<a>Suppressor T-cells</a>
+	</question>
+
+	<question>
+		<q>Active immunity means</q>
+		<a>Increased flow of blood</a>
+		<a correct="true">Resistance developed after disease</a>
+		<a>Resistance developed before disease</a>
+		<a>Increased heart beat</a>
+	</question>
+
+	<question>
+		<q>AIDS is caused by</q>
+		<a>DNA virus</a>
+		<a>Herpes virus</a>
+		<a>Hepatitis virus</a>
+		<a correct="true">RNA virus</a>
+	</question>
+
+	<question>
+		<q>Which is most abundant immunoglobulin</q>
+		<a>Ig A</a>
+		<a>Ig D</a>
+		<a correct="true">Ig G</a>
+		<a>Ig M</a>
+	</question>
+
+	<question>
+		<q>An example of innate immunity is</q>
+		<a correct="true">Neutrophils</a>
+		<a>T-lymphocytes</a>
+		<a>Thyroid cells</a>
+		<a>B-lymphocytes</a>
+	</question>
+
+	<question>
+		<q>An insect bite may result in inflammation of that spot. It is triggered by alarm chemicals such as</q>
+		<a>Interferons and histones</a>
+		<a>Interferon and opsonin</a>
+		<a>Histamine and dopamine</a>
+		<a correct="true">Histamine and kinins</a>
+	</question>
+
+	<question>
+		<q>Antibodies are</q>
+		<a correct="true">Glycoproteins</a>
+		<a>Carbohydrates</a>
+		<a>Lipids</a>
+		<a>Nucleic acids</a>
+	</question>
+</questions>

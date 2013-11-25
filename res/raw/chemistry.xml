@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<questions category= "chemistry">
+	<question>
+		<q>Dihydrogen monoxide is:</q>
+		<a correct="true">Safe enough to drink.</a>
+		<a>More explosive than TNT.</a>
+		<a>A strong base that reacts vigorously with metal.</a>
+		<a>A strong acid that will eat through glass.</a>
+	</question>
+
+	<question>
+		<q>TNT is a well-known explosive. TNT stands for:</q>
+		<a correct="true">Trinitrotoluene</a>
+		<a>Tetranitrotoluene</a>
+		<a>Trinitrotriglycerine</a>
+		<a>Tert nitrotetramine</a>
+	</question>
+
+	<question>
+		<q>You use paper products every day. Paper is made from which natural polymer?</q>
+		<a correct="true">Cellulose</a>
+		<a>Chitin</a>
+		<a>Keratin</a>
+		<a>Elastin</a>
+	</question>
+
+	<question>
+		<q>Which of the following is not an element?</q>
+		<a>Copernicium</a>
+		<a>Holmium</a>
+		<a>Berkelium</a>
+		<a correct="true">Kryptonite</a>
+	</question>
+
+	<question>
+		<q>Which of these pure elements would be dangerous to hold in the palm of your hand?</q>
+		<a>Gallium</a>
+		<a>Zinc</a>
+		<a>Sulfur</a>
+		<a correct="true">Sodium</a>
+	</question>
+
+	<question>
+		<q>A deficiency of vitamin C may result in a medical condition known as scurvy. You can avoid getting scurvy by eating foods rich in vitamin C, such as citrus fruits. Vitamin C is also known as:</q>
+		<a>Niacin</a>
+		<a>Carbonic acid</a>
+		<a correct="true">Ascorbic acid</a>
+		<a>Citric acid</a>
+	</question>
+
+	<question>
+		<q>The last column in the Periodic Table contains the noble gases. Which of these elements is not a noble gas?</q>
+		<a correct="true">Bromine</a>
+		<a>Neon</a>
+		<a>Krypton</a>
+		<a>Argon</a>
+	</question>
+
+	<question>
+		<q>Protium, deuterium and tritium are all forms of which element?</q>
+		<a correct="true">Hydrogen</a>
+		<a>Helium</a>
+		<a>Carbon</a>
+		<a>Iron</a>
+	</question>
+
+	<question>
+		<q>Which of the following is an example of a physical change?</q>
+		<a>Burning paper</a>
+		<a>Nuclear decay</a>
+		<a>Mixing salt in water</a>
+		<a correct="true">Dissolving sugar in water</a>
+	</question>
+
+	<question>
+		<q>Which metal is light enough to float on water?</q>
+		<a>Beryllium</a>
+		<a correct="true">Potassium</a>
+		<a>Magnesium</a>
+		<a>Titanium</a>
+	</question>
+
+	<question>
+		<q>Which of these element sometimes is considered a nonmetal and other times considered a metal, primarily depending on its state?</q>
+		<a correct="true">Hydrogen</a>
+		<a>Helium</a>
+		<a>Mercury</a>
+		<a>Iodine</a>
+	</question>
+
+	<question>
+		<q>Atomic weight or atomic mass is based on the mass of an element's:</q>
+		<a>Protons</a>
+		<a>Neutrons</a>
+		<a correct="true">Protons and Neutrons</a>
+		<a>Protons and Electrons</a>
+	</question>
+
+	<question>
+		<q>The element symbol Au comes from the element name 'aurum', which is more commonly known as:</q>
+		<a>Sulfur</a>
+		<a>Lead</a>
+		<a>Tin</a>
+		<a correct="true">Gold</a>
+	</question>
+
+	<question>
+		<q>A solid has:</q>
+		<a>A definite volume, but not a defined shape.</a>
+		<a>A definite shape, but not a defined volume.</a>
+		<a correct="true">A definite volume and shape.</a>
+		<a>No defined volume or shape.</a>
+	</question>
+
+	<question>
+		<q>You would be most likely to increase the rate of a chemical reaction by:</q>
+		<a>increasing the concentration of products.</a>
+		<a>decreasing concentration of reactants.</a>
+		<a>decreasing temperature</a>
+		<a correct="true">increasing temperature.</a>
+	</question>
+
+	<question>
+		<q>A catalyst may increase the rate of a chemical reaction. Catalysts work by:</q>
+		<a>Increasing the activation energy of a reaction.</a>
+		<a correct="true">Decreasing the activation energy of the reaction.</a>
+		<a>Becoming a part of the reaction product.</a>
+		<a>Increasing the temperature of the reaction.</a>
+	</question>
+
+	<question>
+		<q>An atom with more electrons than protons is called:</q>
+		<a>A molecule</a>
+		<a>An isotope</a>
+		<a correct="true">An anion</a>
+		<a>A cation</a>
+	</question>
+
+	<question>
+		<q>Amino acids may join together to form:</q>
+		<a>DNA</a>
+		<a>Lipids</a>
+		<a>Carbohydrates</a>
+		<a correct="true">Protein</a>
+	</question>
+
+	<question>
+		<q>The First Law of Thermodynamics is also known as:</q>
+		<a correct="true">Law of Conservation of Energy</a>
+		<a>Dalton's Law</a>
+		<a>Entropy</a>
+		<a>Law of Conservation of Mass</a>
+	</question>
+
+	<question>
+		<q>Approximately how many particles are in a mole of a substance?</q>
+		<a correct="true">6.02 x 10^23</a>
+		<a>6.02 x 10^19</a>
+		<a>3 x 10^8</a>
+		<a>1.602 x 10^-19</a>
+	</question>
+
+	<question>
+		<q>How much salt, NaCl, is in the average adult human body?</q>
+		<a>500 grams</a>
+		<a>2 kilograms</a>
+		<a>1 kilogram</a>
+		<a correct="true">250 grams</a>
+	</question>
+
+	<question>
+		<q>If you allow the ice in a full glass of ice water to melt, the glass will overflow.</q>
+		<a>True</a>
+		<a correct="true">False</a>
+	</question>
+
+	<question>
+		<q>All of the following elements are liquid at or near room temperature except:</q>
+		<a correct="true">Magnesium</a>
+		<a>Bromine</a>
+		<a>Mercury</a>
+		<a>Gallium</a>
+	</question>
+
+	<question>
+		<q>The elemeny symbol Sb stands for stibnum or stibnite. Stibnum was another name for which element?</q>
+		<a>arsenic</a>
+		<a>tin</a>
+		<a correct="true">antimony</a>
+		<a>samarium</a>
+	</question>
+
+	<question>
+		<q>Milk is:</q>
+		<a>Slightly basic</a>
+		<a correct="true">Slightly acidic</a>
+		<a>Neutral</a>
+		<a>A strong acis</a>
+	</question>
+
+	<question>
+		<q>The most abundant protein in the human body is:</q>
+		<a>Tubulin</a>
+		<a>Albumin</a>
+		<a correct="true">Collagen</a>
+		<a>Keratin</a>
+	</question>
+
+	<question>
+		<q>The most common isotope of hydrogen is:</q>
+		<a correct="true">Protium</a>
+		<a>Deuterium</a>
+		<a>Tritium</a>
+		<a>Kryptonite</a>
+	</question>
+
+	<question>
+		<q>The modern periodic table was invented by:</q>
+		<a>Mendel</a>
+		<a>Nobel</a>
+		<a correct="true">Mendeleev</a>
+		<a>Lavoisier</a>
+	</question>
+
+	<question>
+		<q>All organic molecules contain:</q>
+		<a>Carbon only</a>
+		<a>Carbon and Nitrogen</a>
+		<a correct="true">Carbon and Hydrogen</a>
+		<a>Carbon, Hydrogen, and Oxygen</a>
+	</question>
+
+	<question>
+		<q>Which of these elements is a nonmetal?</q>
+		<a correct="true">Sulfur</a>
+		<a>Manganese</a>
+		<a>Aluminum</a>
+		<a>Beryllium</a>
+	</question>
+
+	<question>
+		<q>The element symbol Ag is the symbol for:</q>
+		<a correct="true">Silver</a>
+		<a>Gallium</a>
+		<a>Gold</a>
+		<a>Magnesium</a>
+	</question>
+
+	<question>
+		<q>A liquid has:</q>
+		<a correct="true">A definite volume, but not a defined shape.</a>
+		<a>A definite shape, but not a defined volume.</a>
+		<a>A definite volume and shape.</a>
+		<a>No defined volume or shape.</a>
+	</question>
+
+	<question>
+		<q>Most of the iron in your body is found where?</q>
+		<a>Brain</a>
+		<a>Skin</a>
+		<a>Bones</a>
+		<a correct="true">Blood</a>
+	</question>
+
+	<question>
+		<q>An atom with more protons than electrons is called:</q>
+		<a>Molecule</a>
+		<a>Isotope</a>
+		<a>Anion</a>
+		<a correct="true">Cation</a>
+	</question>
+
+	<question>
+		<q>All of the following are amino acids except:</q>
+		<a>tyrosine</a>
+		<a>tryptophan</a>
+		<a>leucine</a>
+		<a correct="true">adenine</a>
+	</question>
+
+	<question>
+		<q>A drop of food coloring spreading out in a cup of water is an example of:</q>
+		<a>Osmosis</a>
+		<a>Vapor pressure</a>
+		<a>Effusion</a>
+		<a correct="true">Diffusion</a>
+	</question>
+
+	<question>
+		<q>In a solution of saltwater, salt is the:</q>
+		<a correct="true">Colute</a>
+		<a>Solvent</a>
+		<a>Colloid</a>
+		<a>Sol</a>
+	</question>
+
+	<question>
+		<q>Which of these forms of matter is ordered from smallest to largest?</q>
+		<a>Compound, Polymer, Neutron</a>
+		<a>Proton, Atom, Electron</a>
+		<a>Proton, Polymer, Atom</a>
+		<a correct="true">Electron, Atom, Compound</a>
+	</question>
+
+	<question>
+		<q>Which of these chemicals is a good example of a base?</q>
+		<a correct="true">Sodium Hydroxide</a>
+		<a>Water</a>
+		<a>Vegetable Oil</a>
+		<a>Hydrochloric Acid</a>
+	</question>
+
+	<question>
+		<q>A gas has:</q>
+		<a correct="true">No defined shape or volume</a>
+		<a>Defined shape, but no defined volume</a>
+		<a>Defined volume, but no defined shape</a>
+		<a>Defined shape and volume</a>
+	</question>
+
+	<question>
+		<q>Potassium is one of the alkali metals. It is found in many compounds and is essential for proper nutrition. The element symbol for potassium is:</q>
+		<a correct="true">K</a>
+		<a>P</a>
+		<a>PO</a>
+		<a>Na</a>
+	</question>
+
+	<question>
+		<q>The chemical substance sometimes referred to as the 'universal solvent' is:</q>
+		<a correct="true">Water</a>
+		<a>Benzene</a>
+		<a>hydrochloric acid</a>
+		<a>Ethyl Alcohol</a>
+	</question>
+
+	<question>
+		<q>Ice is:</q>
+		<a correct="true">Less dense than water</a>
+		<a>Made from impurities that separate from water as it cools</a>
+		<a>More dense than water</a>
+		<a>A mixture of water and air</a>
+	</question>
+
+	<question>
+		<q>Which of the following is an example of a colloid?</q>
+		<a>Sand in water</a>
+		<a>Salt in water</a>
+		<a>Oil in water</a>
+		<a correct="true">Milk</a>
+	</question>
+
+	<question>
+		<q>All of the following are alkali metals except:</q>
+		<a>Potassium</a>
+		<a>Sodium</a>
+		<a correct="true">Calcium</a>
+		<a>Lithium</a>
+	</question>
+
+	<question>
+		<q>The invention of the periodic table is often credited to:</q>
+		<a>Mendel</a>
+		<a>Leewenhoek</a>
+		<a correct="true">Mendeleev</a>
+		<a>Sir Francis Bacon</a>
+	</question>
+
+	<question>
+		<q>Which of the following is a good example of a polar solvent?</q>
+		<a correct="true">Water</a>
+		<a>Carbon Tetrachloride</a>
+		<a>Xylene</a>
+		<a>Hexane</a>
+	</question>
+
+	<question>
+		<q>Photosynthesis is a chemical process through which plants produce:</q>
+		<a>Latic Acid</a>
+		<a>Water</a>
+		<a>Fructose</a>
+		<a correct="true">Glucose</a>
+	</question>
+
+	<question>
+		<q>A mole is based on the number of:</q>
+		<a>Atoms in 1 gram of pure hydrogen.</a>
+		<a correct="true">Atoms in 12.000 grams of carbon-12.</a>
+		<a>Atoms in 1 gram of carbon-12.</a>
+		<a>Atoms in 12.000 grams of carbon-14.</a>
+	</question>
+
+	<question>
+		<q>Which indicates a higher temperature: 100 degrees Celsius or 100 degrees Fahrenheit?</q>
+		<a correct="true">100 degrees Celcius is hotter</a>
+		<a>100 degrees Fahrenheit is hotter.</a>
+		<a>They are the same.</a>
+	</question>
+
+	<question>
+		<q>Which of the following is an example of a carbohydrate?</q>
+		<a correct="true">Tree bark</a>
+		<a>Water</a>
+		<a>Olive oil</a>
+		<a>Bone</a>
+	</question>
+</questions>
