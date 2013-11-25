@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -53,27 +55,39 @@ public class MainActivity extends Activity {
         Log.d(TAG,"onCreate");
         
         Log.d(TAG, "onCreate: setting up xml database on external media");
-        File file = new File(getExternalFilesDir(null), "Astronomy");
-        if (!file.exists())
+        ArrayList<Integer> qCategoryIds = new ArrayList<Integer>();
+        Field[] fields = R.raw.class.getFields();
+        for(Field f : fields) {
 	        try {
-	        	InputStream is = getResources().openRawResource(R.raw.astronomy);
-	        	OutputStream os = new FileOutputStream(file);
-	        	byte[] data = new byte[is.available()];
-	        	is.read(data);
-	        	os.write(data);
-	        	is.close();
-	        	os.close();
+	        	qCategoryIds.add(f.getInt(null));
+	        } catch (IllegalArgumentException e) {
+	        } catch (IllegalAccessException e) { }
+        } 
+        for (int i: qCategoryIds) {
+        	String resName = getResources().getResourceName(i);
+        	String fileName = resName.replaceAll(".*/(.*)$","$1");
+	        File file = new File(getExternalFilesDir(null), fileName);
+	        Log.d(TAG, String.format("Checking file: %s",fileName));
+	        if (!file.exists())
+		        try {
+		        	InputStream is = getResources().openRawResource(i);
+		        	OutputStream os = new FileOutputStream(file);
+		        	byte[] data = new byte[is.available()];
+		        	is.read(data);
+		        	os.write(data);
+		        	is.close();
+		        	os.close();
+		        	hasSDCard = 1;
+		        	Log.d(TAG, "Found sdcard");
+		        }
+		        catch(Exception e) {
+		        	hasSDCard = 0;
+		        	Log.d(TAG, "Error writing to external storage, or no external storage available");
+		        }
+	        else {
 	        	hasSDCard = 1;
-	        	Log.d(TAG, "Found sdcard");
 	        }
-	        catch(Exception e) {
-	        	hasSDCard = 0;
-	        	Log.d(TAG, "Error writing to external storage, or no external storage available");
-	        }
-        else {
-        	hasSDCard = 1;
         }
-        
         Log.d(TAG, "Transfered file if necessary");
         if (hasSDCard > 0) {
         	sddir = getExternalFilesDir(null);
