@@ -26,7 +26,6 @@ public class ScoreActivity extends Activity {
 		
 		Log.d(MainActivity.TAG, String.format("Getting all scores"));
 		Map<String, ?> scoreMap = score.getAll();
-//		Map.Entry<String, ?> smallest = scoreMap.entrySet().iterator().next();
 		int rank = 1;
     	for (Map.Entry<String, ?> i: scoreMap.entrySet()) {
     		Log.d(MainActivity.TAG, String.format("High Score: %s",i.getValue()));

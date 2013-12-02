@@ -162,12 +162,11 @@ public class GameBoard extends Activity {
             
             //skip dark turn if no moves
             if (!m.isValid()) {
-//            	temp.setText("black has no moves ("+m.column+", "+m.row+")");
+            	Log.d(MainActivity.TAG, String.format("Move Invalid"));
             }
             else {
 				while (!game.canMove(ReversiGame.WHITE)) {
 		            m = game.blackTurn();
-//		            temp.setText(m.column + " " + m.row);
 		            switch (game.hasWon(ReversiGame.BLACK)) {
 		                case 'w':
 		                	gameOverAlert(getResources().getString(R.string.game_over_lose));
@@ -216,8 +215,6 @@ public class GameBoard extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// go to settings
-//				Intent intent = new Intent(arg0.getContext(),MainActivity.class);
-//		    	startActivity(intent);
 				setContentView(R.layout.game_board);
 				setupButtons();
 				makeMove();
@@ -376,7 +373,6 @@ public class GameBoard extends Activity {
 						break;
 					case MOVE:
 						availableMoves.add(new ReversiGame.Move(k,n));
-//						Log.d(MainActivity.TAG,String.format("move (%d,%d) added to available list",k,n));
 						board[n][k].setImageResource(R.drawable.reversi_move);
 						break;
 					case EMPTY:
@@ -389,13 +385,13 @@ public class GameBoard extends Activity {
 	}
 	
 	private void setupQuestion() {
+		Log.d(MainActivity.TAG,String.format("Setting up question"));
 		Random rand = new Random();
 		RadioGroup aRadioGroup = (RadioGroup) findViewById(R.id.answersRadioGroup);
 		TextView aTextView = (TextView) findViewById(R.id.question);
-//		Log.d(MainActivity.TAG,String.format("SetupQuestions: aRadioGroup == %s",(aRadioGroup==null)?"null":"not null"));
 		aRadioGroup.clearCheck();
 		aRadioGroup.removeAllViews();
-		Log.d(MainActivity.TAG,String.format("Removed all views"));
+		Log.d(MainActivity.TAG,String.format("Removed all views from question"));
 		QuestionsPullParser.Question q;
 		if (questions.size() > 0) { // available question
 			Log.d(MainActivity.TAG,String.format("Getting question"));
@@ -424,7 +420,6 @@ public class GameBoard extends Activity {
 			rbtns.get(rbtns.size()-1).setId(i);
 			rbtns.get(rbtns.size()-1).setText(q.a.get(i));
 			Log.d(MainActivity.TAG,String.format("Adding button with a: %s", q.a.get(i)));
-//			aRadioGroup.addView(rbtns.get(rbtns.size()-1));
 		}
 		rbtns.add(new RadioButton(this));
 		correctId = q.a.size();
@@ -436,7 +431,6 @@ public class GameBoard extends Activity {
 			aRadioGroup.addView(rbtns.get(n));
 			rbtns.remove(n);
 		}
-//		rbtns.get(0).setChecked(true);
 		((RadioButton)aRadioGroup.getChildAt(0)).setChecked(true);
 	}
 	
@@ -444,18 +438,14 @@ public class GameBoard extends Activity {
 		InputStream stream = null;
 	    // Instantiate the parser
 	    QuestionsPullParser qpp = new QuestionsPullParser();
-	    
 	    try {
-//	    	Log.d(MainActivity.TAG,String.format("Beginning parsing"));
+	    	Log.d(MainActivity.TAG,String.format("Beginning parsing questions"));
 	        stream = getQuestionsXmlByCategory();
-//	        Log.d(MainActivity.TAG,String.format("Opened Stream"));
 	        questions = qpp.parse(stream);
-//	        Log.d(MainActivity.TAG,String.format("Finished parsing"));
-	    // Makes sure that the InputStream is closed after the app is
-	    // finished using it.
+	        Log.d(MainActivity.TAG,String.format("Finished parsing questions"));
 	    } 
 	    catch (Exception e) {
-//	    	Log.d(MainActivity.TAG,String.format("Failed parsing"));
+	    	Log.d(MainActivity.TAG,String.format("Failed parsing: %s",e.getMessage()));
 	    }
 	    finally {
 	        if (stream != null) {
@@ -469,7 +459,6 @@ public class GameBoard extends Activity {
 	
 	@SuppressWarnings("resource")
 	private InputStream getQuestionsXmlByCategory() throws IOException {
-		AssetManager assetManager = getAssets();
 		File sddir;
 		File[] xmls = null;
 		if (hasSDCard) {
@@ -478,8 +467,6 @@ public class GameBoard extends Activity {
 		}
 		InputStream inputStream = null;
 		try {
-//			inputStream = assetManager.open(category + ".xml");
-//			inputStream = assetManager.open("astronomy.xml");
 			boolean found = false;
 			if (hasSDCard)
 				for(File f : xmls) {
@@ -499,7 +486,6 @@ public class GameBoard extends Activity {
 				
 		} catch (Exception e) {
 			Log.d(MainActivity.TAG,"Failed parsing: " + e.getMessage());
-//			Log.d("tag", e.getMessage());
 		}
 	    return inputStream;	
 	}
