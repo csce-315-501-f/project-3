@@ -40,7 +40,6 @@ public class GameBoard extends Activity {
 	
 	private String difficulty;
 	private String category;
-	private String mode;
 	
 	private int blackScore;
 	private int whiteScore;
@@ -89,7 +88,6 @@ public class GameBoard extends Activity {
 		Intent intent = getIntent();
 		difficulty = intent.getStringExtra(MainActivity.GAME_DIFFICULTY);
 		category = intent.getStringExtra(MainActivity.QUESTION_CATEGORY);
-		mode = intent.getStringExtra(MainActivity.GAME_MODE);
 		hasSDCard = (intent.getIntExtra(MainActivity.SD_CARD, 0) > 0)?true:false;
 		
 		setupButtons();
@@ -242,7 +240,6 @@ public class GameBoard extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(arg0.getContext(),ScoreActivity.class);
 		    	startActivity(intent);
 			}

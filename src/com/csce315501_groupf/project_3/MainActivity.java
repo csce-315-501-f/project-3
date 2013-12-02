@@ -24,7 +24,6 @@ import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 
-	static final String GAME_MODE = "com.csce315501_groupf.project3.GAME_MODE";
 	static final String GAME_DIFFICULTY = "com.csce315501_groupf.project3.GAME_DIFFICULTY";
 	static final String QUESTION_CATEGORY = "com.csce315501_groupf.project3.QUESTION_CATEGORY";
 	static final String SD_CARD = "com.csce315501_groupf.project3.SD_CARD";
@@ -33,7 +32,6 @@ public class MainActivity extends Activity {
 	
 	static final String TAG = "com.reversi";
 	
-	private Spinner spinGameMode;
 	private Spinner spinGameDifficulty;
 	private Spinner spinQuestionCategory;
 	
@@ -113,53 +111,30 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
         	Log.d(TAG,"creating new state");
             SharedPreferences mPrefs = getSharedPreferences(PREF_FILE, 1);
-            if (mPrefs.contains(GAME_MODE)) {
+            if (mPrefs.contains(GAME_DIFFICULTY)) {
             	Log.d(TAG,"loading preferences file");
-	            gameMode = mPrefs.getString(GAME_MODE,"");
 	            gameDifficulty = mPrefs.getString(GAME_DIFFICULTY,"");
 	            questionCategory = mPrefs.getString(QUESTION_CATEGORY,"");
             }
             else {
             	Log.d(TAG,"no preferences file");
-	        	gameMode = gameModes.get(0);
 	        	gameDifficulty = gameDifficulties.get(0);
 	        	questionCategory = questionCategories.get(0);
             }
         }
         else {
         	Log.d(TAG,"restoring previous state");
-        	gameMode = savedInstanceState.getString(GAME_MODE);
         	gameDifficulty = savedInstanceState.getString(GAME_DIFFICULTY);
         	questionCategory = savedInstanceState.getString(QUESTION_CATEGORY);
         }
         
         // initialize spinner input
-        spinGameMode = (Spinner) findViewById(R.id.spinGameModes);
-        spinGameMode.setSelection(gameModes.indexOf(gameMode));
         spinGameDifficulty = (Spinner) findViewById(R.id.spinDifficulties);
         spinGameDifficulty.setSelection(gameDifficulties.indexOf(gameDifficulty));
         spinQuestionCategory = (Spinner) findViewById(R.id.spinCategory);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.textview, questionCategories);
         spinQuestionCategory.setAdapter(adapter);
         spinQuestionCategory.setSelection(questionCategories.indexOf(questionCategory));
-        
-        // set spinner callbacks
-        spinGameMode.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				gameMode = spinGameMode.getSelectedItem().toString();
-				
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-        	
-        });
         
         spinGameDifficulty.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -199,7 +174,6 @@ public class MainActivity extends Activity {
     protected void onPause() {
     	SharedPreferences prefs = getSharedPreferences(PREF_FILE, 1);
     	SharedPreferences.Editor mPrefs = prefs.edit();
-    	mPrefs.putString(GAME_MODE,gameMode);
         mPrefs.putString(GAME_DIFFICULTY,gameDifficulty);
         mPrefs.putString(QUESTION_CATEGORY, questionCategory);
         mPrefs.commit();
@@ -217,7 +191,6 @@ public class MainActivity extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
     	super.onSaveInstanceState(outState);
     	
-    	outState.putString(GAME_MODE, gameMode);
     	outState.putString(GAME_DIFFICULTY, gameDifficulty);
     	outState.putString(QUESTION_CATEGORY, questionCategory);
     	
@@ -225,7 +198,6 @@ public class MainActivity extends Activity {
     
     public void startGame(View v) {
     	Intent intent = new Intent(this,GameBoard.class);
-    	intent.putExtra(GAME_MODE, gameMode);
     	intent.putExtra(GAME_DIFFICULTY, gameDifficulty);
     	intent.putExtra(QUESTION_CATEGORY, questionCategory);
     	intent.putExtra(SD_CARD, hasSDCard);
